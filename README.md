@@ -28,7 +28,7 @@ You can also find more example analyses with HTSSIP in the [vignettes](https://c
 
 All tutorials were writen in R markdown and original files can be found in [Rmarkdown_files](Rmarkdown_files/).
 
-### [Simple HTSSIP example](Chapter_Examples.html)
+### [Simple HTSSIP example](http://htmlpreview.github.com/seb369/HR-SIP_example/Chapter_Examples.html)
 Runs through a simple example for analyzing a real amplicon dataset with both HR-SIP and MW-HR-SIP.
 The dataset used here includes a single treatment and control pair.
 
