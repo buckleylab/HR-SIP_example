@@ -26,20 +26,22 @@ You can also find more example analyses with HTSSIP in the [vignettes](https://c
 
 ## The tutorials
 
-### [Simple HTSSIP example](https://github.com/buckleylab/HR-SIP_example/Chapter_Examples.html)
+All tutorials were writen in R markdown and original files can be found in [Rmarkdown_files](Rmarkdown_files/).
+
+### [Simple HTSSIP example](Chapter_Examples.html)
 Runs through a simple example for analyzing a real amplicon dataset with both HR-SIP and MW-HR-SIP.
 The dataset used here includes a single treatment and control pair.
 
-### [Multi-sample HTSSIP example](https://github.com/buckleylab/HR-SIP_example/HRSIP_multiple_samples.html)
+### [Multi-sample HTSSIP example](HRSIP_multiple_samples.html)
 Runs through a more complex example for analyzing an amplicon dataset that includes multiple treatments and sampling days with their corresponding controls.
 
-### [Additional preliminary analyses](https://github.com/buckleylab/HR-SIP_example/addl_prelim_analyses.html)
+### [Additional preliminary analyses](addl_prelim_analyses.html)
 Examples of additional analyses that can be run prior to HR-SIP or MW-HR-SIP:
 
 * Beta-diversity between treatments and controls across fractions.
 * Estimating buoyant density shift of the community.
 
-### [Additional follow-up analyses](https://github.com/buckleylab/HR-SIP_example/addl_further_analyses.html)
+### [Additional follow-up analyses](addl_further_analyses.html)
 Examples of additional analyses and figures that can be done after running HR-SIP or MW-HR-SIP:
 
 * Examine taxonomy of labeled OTUs.
@@ -48,7 +50,7 @@ Examples of additional analyses and figures that can be done after running HR-SI
 
 ## The data
 
-Example data can be found in [example_data/](https://github.com/buckleylab/HR-SIP_example/example_data/).
+Example data can be found in [example_data](example_data/).
 All datasets are in phyloseq format. For more information on this format please refer to [this site](https://joey711.github.io/phyloseq/).
 
 These datasets come from experiments adding <sup>13</sup>C-labeled substrates 
