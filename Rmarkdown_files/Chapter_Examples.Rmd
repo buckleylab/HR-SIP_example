@@ -1,0 +1,278 @@
+---
+title: "Simple HTSSIP example"
+author: "Samuel Barnett"
+date: "`r format(Sys.time(), '%d %B, %Y')`"
+output: 
+  html_document:
+    toc: true
+    toc_float: true
+---
+
+## Introduction
+
+This tutorial takes you through a simple example analyzing amplicon based DNA-SIP data with a real dataset using the MW-HR-SIP method. The files used in this tutorial can be found with this github site under the directory [example_data](https://github.com/buckleylab/HR-SIP_example/example_data). 
+
+The analyses showcased here include:
+
+* Testing treatment-control beta-diversity
+* Identifying isotope incorporators with MW-HR-SIP
+* Displaying an incorporator's relative abundance distribution across density fractions
+
+For more details on designing and performing DNA-SIP experiments, please refer to the following select sources:
+
+* Pepe-Ranney C, Campbell AN, Koechli CN, Berthrong S and Buckley DH (2016) Unearthing the Ecology of Soil Microorganisms Using a High Resolution DNA-SIP Approach to Explore Cellulose and Xylose Metabolism in Soil. Front. Microbiol. 7:703. doi: [10.3389/fmicb.2016.00703](https://www.frontiersin.org/articles/10.3389/fmicb.2016.00703/full)
+* Youngblut ND, Barnett SE, Buckley DH (2018) HTSSIP: An R package for analysis of high throughput sequencing data from nucleic acid stable isotope probing (SIP) experiments. PLoS ONE 13(1): e0189616. doi: [10.1371/journal.pone.0189616](https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0189616)
+* Youngblut ND, Barnett SE and Buckley DH (2018) SIPSim: A Modeling Toolkit to Predict Accuracy and Aid Design of DNA-SIP Experiments. Front. Microbiol. 9:570. doi: [10.3389/fmicb.2018.00570](https://www.frontiersin.org/articles/10.3389/fmicb.2018.00570/full)
+
+
+### R packages needed
+
+As with any R script, the first thing to do is to load the namespace of packages that will be used in the analysis.
+
+```{r, message=FALSE, warning=FALSE}
+# Packages needed for data handling
+library(dplyr)
+library(tidyr)
+library(tibble)
+
+# Packages needed for analysis
+library(phyloseq)   # Used for handling our data format and wraping some functions found in other packages, mainly vegan
+library(HTSSIP)     # Contains the main methods used in this analysis
+
+# Packages needed for plotting
+library(ggplot2)
+
+# Packages used to make this Rmarkdown notebook look nice
+library(knitr)
+library(kableExtra)
+```
+
+
+## Testing treatment-control beta-diversity
+
+Prior to running MW-HR-SIP it is recommended that you check the dissimilarity between the unfractionated treatment and control samples. An unfractionated sample is simply DNA that was extracted from the microcosms and sequenced as-is; no CsCl gradient fractionation. Ideally, as both treatment and control samples were treated the same, with the exception that treatment samples got isotopically labled substrates and controls got unlabled substrates, the communities should be fairly similar. If the treatment and control samples are wildly dissimilar, then it is a sign that there is some systematic difference between the treatment and control and caution should be taken with further analysis. We recommend calculating this beta-diversity using the Bray-Curtis dissimilarity. Ideal dissimilarity between each treatment and its control should less than 0.2.
+
+#### 1. Import data
+
+Unfractionated sample data can be found in the file "unfractionated_phyloseq.rds". This is an R object containing the data in phyloseq format.
+
+```{r, message=FALSE, warning=FALSE}
+# Import the data you using the readRDS() function
+unfrac.physeq <- readRDS("unfractionated_phyloseq.rds")
+
+# What does this phyloseq object look like?
+unfrac.physeq
+```
+
+
+#### 2. Rarefy the read counts to an even depth:
+
+Before measuring the beta diversity you need to account for differences in sequencing depth between samples. One common way to do this is by rarefying to an equal depth. There are a number of other ways to do this as well.
+
+```{r, message=FALSE, warning=FALSE}
+# Before you rarefy, it is good to set the seed so that you can replicate this somewhat stochastic step. Note this was not shown in the chapter.
+set.seed(4242)
+
+# Rarefy the data in each of the contrasts.
+unfrac.physeq <- rarefy_even_depth(unfrac.physeq)
+
+# Now what does this phyloseq object look like?
+unfrac.physeq
+```
+
+
+#### 3.  Calculate Bray-Curtis dissimilarity between samples:
+
+Now you can calculate the Bray-Curtis dissimilarity between your samples.
+```{r, message=FALSE, warning=FALSE}
+# Calculate the Bray-Curtis dissimilarity for each comparison
+unfrac.dist <- phyloseq::distance(unfrac.physeq, "bray")
+
+# Print the results
+unfrac.dist
+```
+
+As you can see, the dissimilarity between treatment and control is a bit higher than 0.2. This is ok, as values around this are common and often unavoidable with real world datasets. However, caution may be warranted when interpereting the results.
+
+## MW-HR-SIP
+
+Now it is time to run the MW-HR-SIP pipeline to identify isotopically labeled OTUs. This example will just be comparing a single treatment with its control. In most studies, there will be many treatments and corresponding controls. To handle this you can use the function `phyloseq_subset()` to split your starting phyloseq into a list of treatment-control pairs and then run `HRSIP()` on this list. An example of this can be found in [HRSIP_multiple_samples.html](https://github.com/buckleylab/HR-SIP_example/HRSIP_multiple_samples.html) as well as the [HTSSIP vignette](https://cran.r-project.org/web/packages/HTSSIP/vignettes/HTSSIP_intro.html).
+
+#### 1. Import data
+
+The data from the gradent fractions can be found in file "SIP_phyloseq.rds". As before this is an R object containing the data in phyloseq format.
+
+```{r, message=FALSE, warning=FALSE}
+# Import the data you using the readRDS() function
+SIP.physeq <- readRDS("SIP_phyloseq.rds")
+
+# What does this phyloseq object look like?
+SIP.physeq
+
+```
+
+#### 2. Convert contrasting parameters to factor and order
+
+In this example the contrast (i.e. variable identifying treatment fractions from control fractions), is `substrate`. HRSIP uses DESeq2 to identify labeled OTUs and DESeq2 requires that the contrasting variable be a factor rather than a character vector. Additionally, factors need to be ordered in such a way that identifies which factor is the treatment and which is the control. For more information on this check out the documentation for DESeq2.
+
+In this case you need to convert the variable "substrate" in the sample metadata to a factor and order it as "12C-Con, 13C-Ami", with control first, and treament second.
+
+```{r, message=FALSE, warning=FALSE}
+# Pull out sample metadata from the phyloseq object
+metadata <- data.frame(sample_data(SIP.physeq), stringsAsFactors = F)
+
+# Modify substrate variable as described above
+metadata$substrate <- factor(metadata$substrate, level=c("12C-Con", "13C-Ami"))
+
+# Replace sample metadata in phyloseq object with the newly modified metadata
+rownames(metadata) <- metadata$Sample_ID
+sample_data(SIP.physeq) <- sample_data(metadata)
+
+
+```
+
+
+#### 3. Generate list of buoyant density windows, list of sparsity threshold cutoffs, and set the p-value cutoff:
+
+Before running the MW-HR-SIP you need to set some important parameters:
+
+* __Windows__: The overlaping bouyant density windows you want to analyze. You will be comparing the read counts of OTUs between the treatment and control fractions within these bouyant density windows. `density_min` refers to the minimum BD of each window. `density_max` refers to the maximum BD of each window. Make sure that there are at least 3 fractions each from the treatment and control within each window.
+* __Sparsity__: The sparsity thresholds used to remove OTUs found in very few fractions. Removing these increases your statistical power as it reduces the number of comparisons maked. You want to run this analysis with multiple sparsity threshold cutoffs and choose the one resulting in the most power or the most rejected null hypotheses.
+* __p-value cutoff__: The p-value cutoff below which an OTU is considered significantly enriched in the treatment compared to the control. OTUs with an adjusted p-value below this cutoff will be designated isotopically labeled.
+
+```{r, message=FALSE, warning=FALSE}
+# Set BD windows
+windows <- data.frame(density_min=c(1.70, 1.72, 1.74), 
+                     density_max=c(1.73, 1.75, 1.77))
+
+# Set sparsity thresholds
+sparsity_list <- c(0, 0.15, 0.30)
+
+# Set pvalue_cutoff
+pvalue_cutoff <- 0.05
+
+```
+
+#### 4. Run MW-HR-SIP:
+
+Now you can run the MW-HR-SIP analysis on the data. As you are comparing between "12C-Con" controls and "13C-Ami" treatment samples, the flag `design` will be `~substrate` indicating that the variable `substrate` separates treatment from control. This part may take some time to run. For those with multiple core machines, you can run this step in parallel to speed it up. For more on this see the [HTSSIP vignettes](https://cran.r-project.org/web/packages/HTSSIP/vignettes/MW_HR_SIP.html).
+
+```{r, message=FALSE, warning=FALSE}
+l2fc.df <- HRSIP(SIP.physeq, 
+                density_windows = windows,
+                design = ~substrate, 
+                padj_cutoff = pvalue_cutoff,
+                sparsity_threshold = sparsity_list)
+
+```
+
+Now you can view the results. Note that this code may look slightly different than in the chapter, mostly to make the output look nice from Rmarkdown. To select just the OTUs that are identified as labeled, filter the dataframe such that `padj <= pvalue_cutoff`.
+
+```{r, message=FALSE, warning=FALSE}
+# What does the full output dataframe look like? Print out the first 10 entries.
+kable(head(l2fc.df, n=10), "html") %>%
+  kable_styling() %>%
+  scroll_box(width = "100%", height="400px")
+
+# How about the first 10 OTUs identified as labeled?
+kable(head(l2fc.df[l2fc.df$padj <= pvalue_cutoff,], n=10), "html") %>%
+  kable_styling() %>%
+  scroll_box(width = "100%", height="400px")
+
+# How many 13C incorporators do we have?
+print(paste("There are", length(l2fc.df[l2fc.df$padj < pvalue_cutoff,]$OTU), "labeled OTUs"))
+```
+
+
+#### 5. Save results
+
+Make sure to save your results.
+
+```{r, message=FALSE, warning=FALSE, eval=FALSE}
+write.table(l2fc.df, file="MWHRSIP_output.txt", quote=FALSE, sep="\t", row.names = FALSE, col.names=TRUE)
+```
+
+
+## Plotting OTU relative abundance over the gradient
+
+This is an exmple of one of the common followup analyses you can run. It can be useful to examine the plot of an identified labeled OTU's relative abundance over the entire gradient. This may help to identify labeled OTUs that seem suspect and warrant further examination.
+
+#### 1.  Import phyloseq and MW-HR-SIP results
+
+Read count data can again be found in "SIP_phyloseq.rds". You also need the log2fold change data you just made using `HRSIP()`.
+
+```{r, message=FALSE, warning=FALSE}
+# Import the phyloseq data you using the readRDS() function
+SIP.physeq <- readRDS("SIP_phyloseq.rds")
+
+# Import the datatable you made before containing list of all OTU's and their results from MW-HR-SIP
+l2fc.df <- read.table(file="MWHRSIP_output.txt", header=TRUE, sep="\t")
+
+```
+
+#### 2.  Rarefy read counts and calculate relative abundances
+
+As before you need to adjust read counts across fractions for variation in sequencing depth by rarefying read counts to an equal depth. Again, you can use other methods for this adjustment. For consistency sake, you also could to convert read counts to relative abundance. This means dividing the read count for each OTU by the total read count.
+
+```{r, message=FALSE, warning=FALSE}
+# Before you rarefy, it is good to set the seed so that you can replicate this somewhat stochastic step. Note this was not shown in the chapter.
+set.seed(4242)
+
+# Rarefy the data in each of the contrasts.
+SIP.physeq.rare <- rarefy_even_depth(SIP.physeq)
+
+# Transform read counts to relative abundances
+SIP.physeq.rare <- transform_sample_counts(SIP.physeq.rare, function(x) x / sum(x))
+```
+
+#### 3.  Get the OTU table
+
+Next, you need to to extract the OTU table from the phyloseq object. This table contains the relative abundance of each OTU in each sample/fraction. You will also convert this OTU table into a dataframe that is easier to use with ggplot2 for visualization.
+
+```{r, message=FALSE, warning=FALSE}
+# Extract the OTU table and convert it into an easy to use dataframe
+OTU.table <- data.frame(t(otu_table(SIP.physeq.rare))) %>%
+  rownames_to_column(var = "Sample_ID") %>%
+  gather(key = "OTU", value = "Relative_abundance", -Sample_ID) %>%
+  inner_join(data.frame(sample_data(SIP.physeq.rare), stringsAsFactors=FALSE), by = "Sample_ID")
+
+```
+
+#### 4.  Plot figure
+
+Now you can plot the relative abundance of any OTU across the gradient fractions. In this case, just look at OTU.2 which was identified as isotopically labeled.
+
+```{r, message=FALSE, warning=FALSE, fig.height=4, fig.width=6}
+# Plot figure for OTU.2
+ggplot(data=OTU.table[OTU.table$OTU == "OTU.2",], aes(x=Buoyant_density, y=Relative_abundance, color=substrate, linetype=substrate)) +
+  geom_point() +
+  geom_line() +
+  labs(x="Buoyant density (g/ml)", y="Relative abundance", color="Substrate", linetype="Substrate") +
+  scale_color_manual(values=c("blue", "red")) +
+  scale_linetype_manual(values=c(2, 1))
+
+```
+
+As you can see the distribution of relative abundance of OTU.2 is different between the 13C-Ami treatment and 12C-Con control samples. Note that there is a sharp peak in the treatment no sharp peak in the control gradients. We believe that this may be an artifact of the compositional nature of Illumina based sequencing.
+
+## More examples
+
+The following additional examples go along with this tutorial:
+
+* [Example with multiple treatments and controls](https://github.com/buckleylab/HR-SIP_example/HRSIP_multiple_samples.html)
+* [Additional prelimiary analyses](https://github.com/buckleylab/HR-SIP_example/addl_prelim_analyses.html)
+    + Beta-diversity across all fractions in treatment and controls
+    + Estimating community BD shift
+* [Additional post MW-HR-SIP analyses](https://github.com/buckleylab/HR-SIP_example/addl_further_analyses.html)
+    + Taxonomy of labeled OTUs
+    + Phylogeny of labeled OTUs
+
+
+## Session Info
+```{r}
+sessionInfo()
+```
+
+
+
+

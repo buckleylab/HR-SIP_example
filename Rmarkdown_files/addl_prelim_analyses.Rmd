@@ -1,0 +1,426 @@
+---
+title: "Examples of additional preliminary analyses"
+author: "Sam Barnett"
+date: "`r format(Sys.time(), '%d %B, %Y')`"
+output: 
+  html_document:
+    toc: true
+    toc_float: true
+---
+
+## Introduction
+
+There are many preliminary analyses that can be performed before running MW-HR-SIP. This tutorial goes through two simple examples, specifically, measuring beta-diversity between all fractions of the treatment and control and estimating the community level buoyant density shift. For an example on how to measure the beta-diversity between unfractionated samples of the treatment and control, see [Chapter_Examples](https://github.com/buckleylab/HR-SIP_example/Chapter_Examples.html).
+
+### R packages needed
+
+```{r, message=FALSE, warning=FALSE}
+# Packages needed for data handling
+library(dplyr)
+library(tidyr)
+library(tibble)
+
+# Packages needed for analysis
+library(phyloseq)   # Used for handling our data format and wraping some functions found in other packages, mainly vegan
+library(HTSSIP)     # Contains the main methods used in this analysis
+
+# Packages needed for plotting
+library(ggplot2)
+
+# Packages used to make this Rmarkdown notebook look nice
+library(knitr)
+library(kableExtra)
+```
+
+## Beta-diversity across all fractions in treatment and controls
+
+Before running MW-HR-SIP, it is interesting to visualize the difference in community composition between fractions from the treatment and control samples. This can be a nice visual representation of how much the community composition differs when isotopically labeled OTUs shift across buoyant densities. The simple way to do this is to measure the UniFrac distance between all fractions from the treatment and control samples and plot these as an ordination.
+
+As with all prevous examples, you can run this analyis with a single treatment-control sample pair or with multiple pairs. Below are examples of both.
+
+
+### Single treatment-control pair
+
+First here is an example of a simple code for visualizing the distance between all fractions from a single treatment-control sample pair. In this case, you have a single phyloseq just as in [Chapter_Examples](https://github.com/buckleylab/HR-SIP_example/Chapter_Examples.html). The following uses custom code which can be changed to suit your needs or coding style.
+
+#### 1. Import the data
+
+As with [Chapter_Examples](https://github.com/buckleylab/HR-SIP_example/Chapter_Examples.html) you will use the data found in file "SIP_phyloseq.rds".
+
+```{r, message=FALSE, warning=FALSE}
+# Import the data you using the readRDS() function
+S1D1.SIP.physeq <- readRDS("SIP_phyloseq.rds")
+
+# What does this phyloseq object look like?
+S1D1.SIP.physeq
+
+```
+
+#### 2. Rarefy the read counts to an even depth:
+
+Before measuring the beta diversity you need to account for differences in sequencing depth between samples. One common way to do this is by rarefying to an equal depth. There are a number of other ways to do this as well.
+
+```{r, message=FALSE, warning=FALSE}
+# Before you rarefy, it is good to set the seed so that you can replicate this somewhat stochastic step. Note this was not shown in the chapter.
+set.seed(4242)
+
+# Rarefy the data in each of the contrasts.
+S1D1.SIP.physeq.rare <- rarefy_even_depth(S1D1.SIP.physeq)
+
+# Now what does this phyloseq object look like?
+S1D1.SIP.physeq.rare
+```
+
+#### 3. Calculate NMDS coordinates for ordination of UniFrac distances
+
+Now you will use the function `ordinate()` from package `phyloseq` to get the ordination of all fractions from these two samples based on the weighted UniFrac distances. Other dissimilarity or distance metrics can be used instead by setting the flag `distance` to another metric such as `bray` for Bray-Curtis.
+
+```{r, message=FALSE, warning=FALSE, results="hide"}
+# This is another step that is stochastic so we need to set the seed in order for this to be replicated.
+set.seed(4242)
+
+# Generate NMDS ordination profile of samples
+bray.ord <- ordinate(S1D1.SIP.physeq.rare, "NMDS", distance="unifrac", weighted = TRUE)
+
+# Convert this into a dataframe so it is easier to plot with ggplot2
+bray.ord.df <- data.frame(bray.ord$points) %>%
+  rownames_to_column(var="Sample_ID") %>%
+  inner_join(data.frame(sample_data(S1D1.SIP.physeq.rare), stringsAsFactors=F), by = "Sample_ID")
+
+
+```
+
+#### 4. Plot ordination
+
+Now you can plot the ordination with ggplot2.
+
+```{r, fig.height=4, fig.width=6, message=FALSE, warning=FALSE}
+ggplot(data=bray.ord.df, aes(x=MDS1, y=MDS2, color=substrate, fill=substrate, size=Buoyant_density)) +
+  geom_point(shape=21, alpha=.3) +
+  labs(x="NMDS 1", y="NMDS 2", color="Sample Type", fill="Sample Type", size="Buoyant density") +
+  scale_color_manual(values=c("blue", "red")) +
+  scale_fill_manual(values=c("blue", "red"))
+
+```
+
+### Multiple treatments and controls
+
+With most real studies you will have multiple treatment samples and corresponding controls. HTSSIP has a handy function to do the above analysis but on multiple treatment-control pairs at once. This example will use the same dataset as in [HRSIP_multiple_samples](https://github.com/buckleylab/HR-SIP_example/HRSIP_multiple_samples.html). This dataset has two 13C labeling treatments over two sampling days, resulting in four treatment-control comparisons:
+
+  13C-Cellulose Day 3 vs. 12C-Control Day 3
+  13C-Glucose Day 3 vs. 12C-Control Day 3
+  13C-Cellulose Day 14 vs. 12C-Control Day 14
+  13C-Glucose Day 14 vs. 12C-Control Day 14
+
+#### 1. Import data
+
+The dataset for this example is called "example_S2D2_phyloseq.rds". As before this is an R object containing the data in phyloseq format.
+
+```{r, message=FALSE, warning=FALSE}
+# Import the data you using the readRDS() function
+S2D2.SIP.physeq <- readRDS("example_S2D2_phyloseq.rds")
+
+# What does this phyloseq object look like?
+S2D2.SIP.physeq
+
+```
+
+#### 2. Subset data by treatment-control comparisons
+
+Currently all of the data is in one single phyloseq object. For the analysis you need separate phyloseq objects, each containing all the fractions for a single treatment and its corresponding control. As in [HRSIP_multiple_samples](https://github.com/buckleylab/HR-SIP_example/HRSIP_multiple_samples.html), you can use the function `phyloseq_subset()` to split up your phyloseq into a list of 4 phyloseq, each matched by day and a single treatment-control combination.
+
+You need to subset the data by `Substrate` and by `Day`. To do this you make an expression that tells the function how to pair up samples. You will use the expression:
+
+`(substrate=='12C-Con' & day=='${day}') | (substrate=='${substrate}' & day=='${day}')`
+
+This expression essentially means that you group samples with the same `day` value and with either `12C-Con` or a distinct other `substrate` value. 
+
+You also need a set of the different pairs of parameters that will be used to group samples. In this case all combinations of `substrate` and `day`. This needs to only include treatment samples, so you first remove `12C-Con` from the `substrate` options.
+
+```{r, message=FALSE, warning=FALSE}
+# Set up the treatment-control pairing expression
+ex <- "(substrate=='12C-Con' & day=='${day}') | (substrate=='${substrate}' & day == '${day}')"
+
+# Get a set of subsetting parameters for the treatment samples
+params <- get_treatment_params(S2D2.SIP.physeq, c('substrate', 'day'), "substrate != '12C-Con'")
+
+# Subset the data into a list of phyloseq objects, each for a different treatment-control comparison
+S2D2.SIP.physeq.list <- phyloseq_subset(S2D2.SIP.physeq, params, ex)
+
+# What does the resulting dataset look like?
+S2D2.SIP.physeq.list
+```
+
+As you can see you now have a list of 4 phyloseq objects, each containing a separate treatment and control sample set. Each list entry is named by the comparison being made. Now you can see how the expression you created above split up the phyloseq object.
+
+#### 3. Calculate NMDS coordinates for ordination of UniFrac distances
+
+This time you will use the function `SIP_betaDiv_ord()` to calculate the coordinates for an NMDS ordination based on UniFrac distance. This is similar to what you did before but runs on a list of phyloseq objects. Different dissimilarity or distance metrics can be used in this step as well. 
+
+This step can also be run with parallel processing for systems with multiple cores. To run in parallel you need to set the number of threads with function `registerDoParallel()` from package `doParallel` then set the flag `parallel = TRUE` in `SIP_betaDiv_ord()`.
+
+```{r, message=FALSE, warning=FALSE, results="hide"}
+# Calculate ordination coordinates
+S2D2.SIP.physeq.ord.df <- SIP_betaDiv_ord(S2D2.SIP.physeq.list, method = 'unifrac', weighted = TRUE)
+
+# Modify entries into variable phyloseq_subset to make them easier to read. This just helps for visualization later and is not really necessary.
+S2D2.SIP.physeq.ord.df$phyloseq_subset <- gsub(" \\| ", "\n", S2D2.SIP.physeq.ord.df$phyloseq_subset)
+
+```
+
+#### 4. Plot ordination
+
+Now you can plot the ordinations. The function `phyloseq_ord_plot()` from package `HTSSIP` can be used for plotting or a similar code using ggplot2 can be writen as before. Be sure to look at the various usages for this function before plotting. Specifically, you will need to indicate graphical varaibles such as point sizes, shapes, and fill colors.
+
+```{r, fig.height=6, fig.width=8, message=FALSE, warning=FALSE}
+phyloseq_ord_plot(S2D2.SIP.physeq.ord.df, 
+                  point_size = "Buoyant_density", 
+                  point_fill = "substrate",
+                  point_alpha = 0.3)
+```
+
+## Estimating community BD shift
+
+The previous examples show how to observe the difference in community composition between fractions of the treatment and control samples. However, they don't give you much of an idea of the amount of community level shift in buoyant density (i.e. a quantification of how much the community shifts across the gradient due to isotopic lableing). One reason why it is hard to measure this is that the buoyant densities of each fraction differ slightly between the treatment and control. This is a normal occurance as separation of fractions differ slightly between each run. The following code estimates the community compositional difference between treatment and control samples across the gradients, correcting for different buoyant densities between treatment and control samples. For a more detailed explination please see the [HTSSIP paper](https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0189616) or the [BD shifts vignette](https://cran.r-project.org/web/packages/HTSSIP/vignettes/BD_shifts.html) on CRAN. In this analysis, you can observe community level buoyant denstity shifts as peaks in the Beta-diversity along the buoyant density range.
+
+You can also use this analysis to estimate buoyant density windows you would expect significant BD shifts occur. This can help to determine which buoyant density windows to use when conducting the MW-HR-SIP analysis. 
+
+As with all prevous examples, you can run this analyis with a single treatment-control sample pair or with multiple pairs, both of which will be shown here.
+
+### Single treatment-control pair
+
+First, this is an example of code for visualizing BD shift and finding BD shift windows from a single treatment-control sample pair.
+
+#### 1. Import the data
+
+As with [Chapter_Examples](https://github.com/buckleylab/HR-SIP_example/Chapter_Examples.html) you will use the data found in file "SIP_phyloseq.rds".
+
+```{r, message=FALSE, warning=FALSE}
+# Import the data you using the readRDS() function
+S1D1.SIP.physeq <- readRDS("SIP_phyloseq.rds")
+
+# What does this phyloseq object look like?
+S1D1.SIP.physeq
+
+```
+
+#### 2. Calculate BD shift
+
+You can calculate the BD shift directly from this dataset using the function `BD_shift()`. The result is a dataframe of weighted Unifrac distances between the treatment and control samples across the full range of buoyant densities in the gradient as well as their bootstrapped confidence intervals. You can change the number of permutations used to generate the confidence intervals. High numbers of permutations yeild the best results but will take a while to run.
+
+You will need to enter in an expression that indicates which fractions are from the control gradient. In this case you will use `ex = "substrate == '12C-Con'"` since the variable `substrate` differentiates the treatment and control samples.
+
+This function requires two other variables to be present in your sample metadata. You need `Buoyant_density` to contain the buoyant densities for each fraction. The variable `Fraction` should contain the fraction number identifing each fraction. These variables need to be spelled exactly as stated, with the first letter capitalized.
+
+```{r, message=FALSE, warning=FALSE}
+# Rename the variable fraction to Fraction so that it conforms with the required input for BD_shift()
+sample_data(S1D1.SIP.physeq) <- sample_data(S1D1.SIP.physeq) %>%
+  rename(Fraction = fraction)
+
+# Calculate BD shift
+S1D1.BDshift.df <- BD_shift(S1D1.SIP.physeq, 
+                           ex="substrate=='12C-Con'",
+                           nperm=999)
+
+# view the first 10 entries in the output dataframe
+kable(head(S1D1.BDshift.df, n=10), "html") %>%
+  kable_styling() %>%
+  scroll_box(width = "100%", height="400px")
+
+```
+
+#### 3. Plot inital results
+
+Now you can plot these initial results to see how the Beta-diversity between treatment and control communities shifts across buoyant density.
+
+```{r, message=FALSE, warning=FALSE, fig.height=4, fig.width=4.5}
+ggplot(S1D1.BDshift.df, aes(BD_min.x, wmean_dist)) +
+  geom_line() +
+  geom_point() +
+  labs(x="Buoyant density", 
+       y="Weighted mean of weighted UniFrac distance")
+```
+
+#### 4. Identify BD shift windows
+
+Now that you have the weighted UniFrac distance between treatment and control across the gradient and bootstrapped confidence intervals, you can identify ranges of buoyant density where the distance is larger than expected under a null model. This means, if at a particular buoyant density, the treatment and control communities are more different than expected under a null model, there is a significant BD shift in some of the OTUs within that window.
+
+You can specify how many consecutive buoyant density points should constitue a window. In this case, 3 consecutive buoyant densities with treatment and control communities more dissimilary than expected under the null model constitue a window.
+
+```{r, message=FALSE, warning=FALSE}
+# Calculate if there is a BD shift for each buoyant density
+S1D1.BDshift.df <- S1D1.BDshift.df %>%
+  mutate(BD_shift = wmean_dist > wmean_dist_CI_high) %>%
+  arrange(BD_min.x) %>%
+  mutate(window = (BD_shift == TRUE & lag(BD_shift) == TRUE & lag(BD_shift, 2) == TRUE) |
+                  (BD_shift == TRUE & lag(BD_shift) == TRUE & lead(BD_shift) == TRUE) |
+                  (BD_shift == TRUE & lead(BD_shift) == TRUE & lead(BD_shift, 2) == TRUE),
+         BD_shift = BD_shift == TRUE & window == TRUE,
+         BD_shift = ifelse(is.na(BD_shift), FALSE, BD_shift))
+
+# View the first 10 buoyant densities where a BD shift is indicated
+kable(head(S1D1.BDshift.df[S1D1.BDshift.df$BD_shift == "TRUE",], n=10), "html") %>%
+  kable_styling() %>%
+  scroll_box(width = "100%", height="400px")
+
+```
+
+#### 3. Plot inital results
+
+It's easier to identify the BD shift windows when you plot the data, rather than reading the table.
+
+```{r, message=FALSE, warning=FALSE, fig.height=4, fig.width=6}
+ggplot(S1D1.BDshift.df, aes(BD_min.x, wmean_dist)) +
+  geom_line() +
+  geom_linerange(aes(ymin=wmean_dist_CI_low, 
+                     ymax=wmean_dist_CI_high),
+                 alpha=0.3) +
+  geom_point(aes(shape=BD_shift), size=3) +
+  scale_shape_manual('Gradient fraction\nin BD shift window?', values=c(21,16)) +
+  labs(x="Buoyant density", 
+       y="Weighted mean of weighted UniFrac distance")
+```
+
+Now you can clearly see which buoyant densities across the gradient are within a BD shift window. To use this for your MW-HR-SIP windows, you can split this large contiguous window into multiple overlapping windows. Be sure to check that at least 3 fractions each from your treatment and control gradients are found in each window.
+
+### Multiple treatments and controls
+
+Finally, the following is an example of code for visualizing BD shift and finding BD shift windows from multiple treatment-control sample pairs.
+
+#### 1. Import data
+
+The dataset for this example is the same as before, "example_S2D2_phyloseq.rds".
+
+```{r, message=FALSE, warning=FALSE}
+# Import the data you using the readRDS() function
+S2D2.SIP.physeq <- readRDS("example_S2D2_phyloseq.rds")
+
+# What does this phyloseq object look like?
+S2D2.SIP.physeq
+
+```
+
+##### 2. Subset data by treatment-control comparisons
+
+Currently all of the data is in one single phyloseq object. Just as before, for the analysis you need separate phyloseq objects, each containing all the fractions for a single treatment and its corresponding control. As in [HRSIP_multiple_samples](https://github.com/buckleylab/HR-SIP_example/HRSIP_multiple_samples.html), you can use the function `phyloseq_subset()` to split up your phyloseq into a list of 4 phyloseq, each matched by day and a single treatment-control combination.
+
+You need to subset the data by `Substrate` and by `Day`. To do this you make an expression that tells the function how to pair up samples. You will use the expression:
+
+`(substrate=='12C-Con' & day=='${day}') | (substrate=='${substrate}' & day=='${day}')`
+
+This expression essentially means that you group samples with the same `day` value and with either `12C-Con` or a distinct other `substrate` value. 
+
+You also need a set of the different pairs of parameters that will be used to group samples. In this case all combinations of `substrate` and `day`. This needs to only include treatment samples, so you first remove `12C-Con` from the `substrate` options.
+
+Additionally as before, the `BD_shift()` function  requires two variables to be present in your sample metadata. You need `Buoyant_density` to contain the buoyant densities for each sample. You also need `Fraction` to contain the fraction number for each sample. In the example data, `Fraction` is spelled with a lower case. Before continuing you will change the variable names.
+
+```{r, message=FALSE, warning=FALSE}
+# Rename the variable "fraction"" to "Fraction"" so that it conforms with the required input for BD_shift()
+sample_data(S2D2.SIP.physeq) <- sample_data(S2D2.SIP.physeq) %>%
+    rename(Fraction = fraction)
+
+# Set up the treatment-control pairing expression
+ex <- "(substrate=='12C-Con' & day=='${day}') | (substrate=='${substrate}' & day == '${day}')"
+
+# Get a set of subsetting parameters for the treatment samples
+params <- get_treatment_params(S2D2.SIP.physeq, c('substrate', 'day'), "substrate != '12C-Con'")
+
+# Subset the data into a list of phyloseq objects, each for a different treatment-control comparison
+S2D2.SIP.physeq.list <- phyloseq_subset(S2D2.SIP.physeq, params, ex)
+
+# What does the resulting dataset look like?
+S2D2.SIP.physeq.list
+```
+
+#### 2. Calculate BD shift
+
+You can calculate the BD shift from this modified dataset using the function `BD_shift()`. The result is a dataframe of weighted UniFrac distances between treatment and control samples across the full range of buoyant densities, as well as their bootstrapped confidence intervals. You can change the number of permutations used to generate the confidence intervals. High numbers of permutations yeild the best results but will take a while, especially now that you are iterating across multiple treatment-control pairs.
+
+You will need to enter in an expression that indicates which fractions are from the control gradient. In this case you will use `ex = "substrate == '12C-Con'"` since the variable `substrate` differentiates the treatment and control samples.
+
+Since you are using a list of phyloseq objects this time, you need to run `BD_shift()` iteratively over each phyloseq object in the list. You can do this using fucntion `ldply()` from package `plyr`. If using ldply, you can make this run a little faster by running multiple treatment-control pairs in parallel. To do this you need to set the flag `.parallel` to true after setting the number of threads you want to use with function `registerDoParallel()` from package `doParallel`. For more info see documentation for `ldply()`.
+
+```{r, message=FALSE, warning=FALSE}
+# Calculate BD shift
+S2D2.BDshift.df <- plyr::ldply(S2D2.SIP.physeq.list, BD_shift, ex="substrate=='12C-Con'", nperm=999)
+
+# Add variables day and substrate to make table comprehension the evential plots easier to read. This is not really necessary but helps.
+S2D2.BDshift.df$day <- gsub('.+day==[ \']*([0-9]+).+', 'Day \\1', S2D2.BDshift.df$.id)
+S2D2.BDshift.df$substrate <- gsub('.+(13C-[A-z]+).+', '\\1', S2D2.BDshift.df$.id)
+
+
+
+# view the first 10 entries in the output dataframe
+kable(head(S2D2.BDshift.df, n=10), "html") %>%
+  kable_styling() %>%
+  scroll_box(width = "100%", height="400px")
+
+```
+
+#### 3. Plot inital results
+
+Now you can plot these initial results to see how the Beta-diversity between treatment and control communities shifts across buoyant density.
+
+```{r, message=FALSE, warning=FALSE, fig.height=4, fig.width=4.5}
+ggplot(S2D2.BDshift.df, aes(BD_min.x, wmean_dist)) +
+  geom_line() +
+  geom_point() +
+  facet_grid(day~substrate) +
+  labs(x="Buoyant density", 
+       y="Weighted mean of weighted UniFrac distance")
+```
+
+#### 4. Identify BD shift windows
+
+Now that you have the weighted UniFrac distance between treatment and control across the gradient and bootstrapped confidence intervals, you can identify ranges of buoyant density where the distance is larger than expected under a null model. This means, if at a particular buoyant density, the treatment and control communities are more different than expected under a null model, there is a significant BD shift in some of the OTUs within that window.
+
+You can specify how many consecutive buoyant density points should constitue a window. In this case, 3 consecutive buoyant densities with treatment and control communities more dissimilary than expected under the null model constitue a window.
+
+```{r, message=FALSE, warning=FALSE}
+# Calculate if there is a BD shift for each buoyant density
+S2D2.BDshift.df <- S2D2.BDshift.df %>%
+  mutate(BD_shift = wmean_dist > wmean_dist_CI_high) %>%
+  arrange(substrate, day, BD_min.x) %>%
+  group_by(substrate, day) %>%
+  mutate(window = (BD_shift == TRUE & lag(BD_shift) == TRUE & lag(BD_shift, 2) == TRUE) |
+                  (BD_shift == TRUE & lag(BD_shift) == TRUE & lead(BD_shift) == TRUE) |
+                  (BD_shift == TRUE & lead(BD_shift) == TRUE & lead(BD_shift, 2) == TRUE),
+         BD_shift = BD_shift == TRUE & window == TRUE,
+         BD_shift = ifelse(is.na(BD_shift), FALSE, BD_shift)) %>%
+  ungroup()
+
+
+# View the first 10 buoyant densities where a BD shift is indicated
+kable(head(S2D2.BDshift.df[S2D2.BDshift.df$BD_shift == "TRUE",], n=10), "html") %>%
+  kable_styling() %>%
+  scroll_box(width = "100%", height="400px")
+
+```
+
+#### 3. Plot inital results
+
+It's easier to identify the BD shift windows when you plot the data, rather than reading the table.
+
+```{r, message=FALSE, warning=FALSE, fig.height=4, fig.width=6}
+ggplot(S2D2.BDshift.df, aes(BD_min.x, wmean_dist)) +
+  geom_line() +
+  geom_linerange(aes(ymin=wmean_dist_CI_low, 
+                     ymax=wmean_dist_CI_high),
+                 alpha=0.3) +
+  geom_point(aes(shape=BD_shift), size=3) +
+  scale_shape_manual('Gradient fraction\nin BD shift window?', values=c(21,16)) +
+  facet_grid(day~substrate) +
+  labs(x="Buoyant density", 
+       y="Weighted mean of weighted UniFrac distance")
+```
+
+In this case it is a bit harder to identify the ideal buoyant density windows since you have different windows for each substrate and day. It is probably best to use the windows that best fit the buoyant density shifts across all samples.
+
+## Session Info
+```{r}
+sessionInfo()
+```
+
+
+
+
