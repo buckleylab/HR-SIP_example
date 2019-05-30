@@ -27,23 +27,23 @@ You can also find more example analyses with HTSSIP in the [vignettes](https://c
 ## The tutorials
 
 All tutorials were writen in R markdown and original files can be found in [Rmarkdown_files](Rmarkdown_files/).
-Also, all tutorials are HTML files so to view with GitHub you need to add http://htmlpreview.github.com/buckleylab/HR-SIP_example/ before file name in address bar. Alternatively, the links
+Also, all tutorials are HTML files so to view with GitHub you need to add http://htmlpreview.github.com/? before file name in address bar. Alternatively, the links
 below go directly to this format.
 
-### [Simple HTSSIP example](http://htmlpreview.github.io/?https://github.com/seb369/HR-SIP_example/seb369/HR-SIP_example/Chapter_Examples.html)
+### [Simple HTSSIP example](http://htmlpreview.github.com/?https://github.com/seb369/HR-SIP_example/blob/master/Chapter_Examples.html)
 Runs through a simple example for analyzing a real amplicon dataset with both HR-SIP and MW-HR-SIP.
 The dataset used here includes a single treatment and control pair.
 
-### [Multi-sample HTSSIP example](http://htmlpreview.github.com/seb369/HR-SIP_example/HRSIP_multiple_samples.html)
+### [Multi-sample HTSSIP example](http://htmlpreview.github.com/?https://github.com/seb369/HR-SIP_example/blob/master/HRSIP_multiple_samples.html)
 Runs through a more complex example for analyzing an amplicon dataset that includes multiple treatments and sampling days with their corresponding controls.
 
-### [Additional preliminary analyses](http://htmlpreview.github.com/seb369/HR-SIP_example/addl_prelim_analyses.html)
+### [Additional preliminary analyses](http://htmlpreview.github.com/?https://github.com/seb369/HR-SIP_example/blob/master/addl_prelim_analyses.html)
 Examples of additional analyses that can be run prior to HR-SIP or MW-HR-SIP:
 
 * Beta-diversity between treatments and controls across fractions.
 * Estimating buoyant density shift of the community.
 
-### [Additional follow-up analyses](http://htmlpreview.github.com/seb369/HR-SIP_example/addl_further_analyses.html)
+### [Additional follow-up analyses](http://htmlpreview.github.com/?https://github.com/seb369/HR-SIP_example/blob/master/addl_further_analyses.html)
 Examples of additional analyses and figures that can be done after running HR-SIP or MW-HR-SIP:
 
 * Examine taxonomy of labeled OTUs.
