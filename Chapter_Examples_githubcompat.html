@@ -1,0 +1,1438 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<link href="data:text/css;charset=utf-8,%0A%40font%2Dface%20%7B%0Afont%2Dfamily%3A%20octicons%2Dlink%3B%0Asrc%3A%20url%28data%3Afont%2Fwoff%3Bcharset%3Dutf%2D8%3Bbase64%2Cd09GRgABAAAAAAZwABAAAAAACFQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABEU0lHAAAGaAAAAAgAAAAIAAAAAUdTVUIAAAZcAAAACgAAAAoAAQAAT1MvMgAAAyQAAABJAAAAYFYEU3RjbWFwAAADcAAAAEUAAACAAJThvmN2dCAAAATkAAAABAAAAAQAAAAAZnBnbQAAA7gAAACyAAABCUM%2B8IhnYXNwAAAGTAAAABAAAAAQABoAI2dseWYAAAFsAAABPAAAAZwcEq9taGVhZAAAAsgAAAA0AAAANgh4a91oaGVhAAADCAAAABoAAAAkCA8DRGhtdHgAAAL8AAAADAAAAAwGAACfbG9jYQAAAsAAAAAIAAAACABiATBtYXhwAAACqAAAABgAAAAgAA8ASm5hbWUAAAToAAABQgAAAlXu73sOcG9zdAAABiwAAAAeAAAAME3QpOBwcmVwAAAEbAAAAHYAAAB%2FaFGpk3jaTY6xa8JAGMW%2FO62BDi0tJLYQincXEypYIiGJjSgHniQ6umTsUEyLm5BV6NDBP8Tpts6F0v%2Bk%2F0an2i%2BitHDw3v2%2B9%2BDBKTzsJNnWJNTgHEy4BgG3EMI9DCEDOGEXzDADU5hBKMIgNPZqoD3SilVaXZCER3%2FI7AtxEJLtzzuZfI%2BVVkprxTlXShWKb3TBecG11rwoNlmmn1P2WYcJczl32etSpKnziC7lQyWe1smVPy%2FLt7Kc%2B0vWY%2FgAgIIEqAN9we0pwKXreiMasxvabDQMM4riO%2BqxM2ogwDGOZTXxwxDiycQIcoYFBLj5K3EIaSctAq2kTYiw%2Bymhce7vwM9jSqO8JyVd5RH9gyTt2%2BJ%2FyUmYlIR0s04n6%2B7Vm1ozezUeLEaUjhaDSuXHwVRgvLJn1tQ7xiuVv%2FocTRF42mNgZGBgYGbwZOBiAAFGJBIMAAizAFoAAABiAGIAznjaY2BkYGAA4in8zwXi%2BW2%2BMjCzMIDApSwvXzC97Z4Ig8N%2FBxYGZgcgl52BCSQKAA3jCV8CAABfAAAAAAQAAEB42mNgZGBg4f3vACQZQABIMjKgAmYAKEgBXgAAeNpjYGY6wTiBgZWBg2kmUxoDA4MPhGZMYzBi1AHygVLYQUCaawqDA4PChxhmh%2F8ODDEsvAwHgMKMIDnGL0x7gJQCAwMAJd4MFwAAAHjaY2BgYGaA4DAGRgYQkAHyGMF8NgYrIM3JIAGVYYDT%2BAEjAwuDFpBmA9KMDEwMCh9i%2Fv8H8sH0%2F4dQc1iAmAkALaUKLgAAAHjaTY9LDsIgEIbtgqHUPpDi3gPoBVyRTmTddOmqTXThEXqrob2gQ1FjwpDvfwCBdmdXC5AVKFu3e5MfNFJ29KTQT48Ob9%2FlqYwOGZxeUelN2U2R6%2BcArgtCJpauW7UQBqnFkUsjAY%2FkOU1cP%2BDAgvxwn1chZDwUbd6CFimGXwzwF6tPbFIcjEl%2BvvmM%2FbyA48e6tWrKArm4ZJlCbdsrxksL1AwWn%2FyBSJKpYbq8AXaaTb8AAHja28jAwOC00ZrBeQNDQOWO%2F%2FsdBBgYGRiYWYAEELEwMTE4uzo5Zzo5b2BxdnFOcALxNjA6b2ByTswC8jYwg0VlNuoCTWAMqNzMzsoK1rEhNqByEyerg5PMJlYuVueETKcd%2F89uBpnpvIEVomeHLoMsAAe1Id4AAAAAAAB42oWQT07CQBTGv0JBhagk7HQzKxca2sJCE1hDt4QF%2B9JOS0nbaaYDCQfwCJ7Au3AHj%2BLO13FMmm6cl7785vven0kBjHCBhfpYuNa5Ph1c0e2Xu3jEvWG7UdPDLZ4N92nOm%2BEBXuAbHmIMSRMs%2B4aUEd4Nd3CHD8NdvOLTsA2GL8M9PODbcL%2BhD7C1xoaHeLJSEao0FEW14ckxC%2BTU8TxvsY6X0eLPmRhry2WVioLpkrbp84LLQPGI7c6sOiUzpWIWS5GzlSgUzzLBSikOPFTOXqly7rqx0Z1Q5BAIoZBSFihQYQOOBEdkCOgXTOHA07HAGjGWiIjaPZNW13%2F%2Blm6S9FT7rLHFJ6fQbkATOG1j2OFMucKJJsxIVfQORl%2B9Jyda6Sl1dUYhSCm1dyClfoeDve4qMYdLEbfqHf3O%2FAdDumsjAAB42mNgYoAAZQYjBmyAGYQZmdhL8zLdDEydARfoAqIAAAABAAMABwAKABMAB%2F%2F%2FAA8AAQAAAAAAAAAAAAAAAAABAAAAAA%3D%3D%29%20format%28%27woff%27%29%3B%0A%7D%0Abody%20%7B%0A%2Dwebkit%2Dtext%2Dsize%2Dadjust%3A%20100%25%3B%0Atext%2Dsize%2Dadjust%3A%20100%25%3B%0Acolor%3A%20%23333%3B%0Afont%2Dfamily%3A%20%22Helvetica%20Neue%22%2C%20Helvetica%2C%20%22Segoe%20UI%22%2C%20Arial%2C%20freesans%2C%20sans%2Dserif%2C%20%22Apple%20Color%20Emoji%22%2C%20%22Segoe%20UI%20Emoji%22%2C%20%22Segoe%20UI%20Symbol%22%3B%0Afont%2Dsize%3A%2016px%3B%0Aline%2Dheight%3A%201%2E6%3B%0Aword%2Dwrap%3A%20break%2Dword%3B%0A%7D%0Aa%20%7B%0Abackground%2Dcolor%3A%20transparent%3B%0A%7D%0Aa%3Aactive%2C%0Aa%3Ahover%20%7B%0Aoutline%3A%200%3B%0A%7D%0Astrong%20%7B%0Afont%2Dweight%3A%20bold%3B%0A%7D%0Ah1%20%7B%0Afont%2Dsize%3A%202em%3B%0Amargin%3A%200%2E67em%200%3B%0A%7D%0Aimg%20%7B%0Aborder%3A%200%3B%0A%7D%0Ahr%20%7B%0Abox%2Dsizing%3A%20content%2Dbox%3B%0Aheight%3A%200%3B%0A%7D%0Apre%20%7B%0Aoverflow%3A%20auto%3B%0A%7D%0Acode%2C%0Akbd%2C%0Apre%20%7B%0Afont%2Dfamily%3A%20monospace%2C%20monospace%3B%0Afont%2Dsize%3A%201em%3B%0A%7D%0Ainput%20%7B%0Acolor%3A%20inherit%3B%0Afont%3A%20inherit%3B%0Amargin%3A%200%3B%0A%7D%0Ahtml%20input%5Bdisabled%5D%20%7B%0Acursor%3A%20default%3B%0A%7D%0Ainput%20%7B%0Aline%2Dheight%3A%20normal%3B%0A%7D%0Ainput%5Btype%3D%22checkbox%22%5D%20%7B%0Abox%2Dsizing%3A%20border%2Dbox%3B%0Apadding%3A%200%3B%0A%7D%0Atable%20%7B%0Aborder%2Dcollapse%3A%20collapse%3B%0Aborder%2Dspacing%3A%200%3B%0A%7D%0Atd%2C%0Ath%20%7B%0Apadding%3A%200%3B%0A%7D%0A%2A%20%7B%0Abox%2Dsizing%3A%20border%2Dbox%3B%0A%7D%0Ainput%20%7B%0Afont%3A%2013px%20%2F%201%2E4%20Helvetica%2C%20arial%2C%20nimbussansl%2C%20liberationsans%2C%20freesans%2C%20clean%2C%20sans%2Dserif%2C%20%22Apple%20Color%20Emoji%22%2C%20%22Segoe%20UI%20Emoji%22%2C%20%22Segoe%20UI%20Symbol%22%3B%0A%7D%0Aa%20%7B%0Acolor%3A%20%234078c0%3B%0Atext%2Ddecoration%3A%20none%3B%0A%7D%0Aa%3Ahover%2C%0Aa%3Aactive%20%7B%0Atext%2Ddecoration%3A%20underline%3B%0A%7D%0Ahr%20%7B%0Aheight%3A%200%3B%0Amargin%3A%2015px%200%3B%0Aoverflow%3A%20hidden%3B%0Abackground%3A%20transparent%3B%0Aborder%3A%200%3B%0Aborder%2Dbottom%3A%201px%20solid%20%23ddd%3B%0A%7D%0Ahr%3Abefore%20%7B%0Adisplay%3A%20table%3B%0Acontent%3A%20%22%22%3B%0A%7D%0Ahr%3Aafter%20%7B%0Adisplay%3A%20table%3B%0Aclear%3A%20both%3B%0Acontent%3A%20%22%22%3B%0A%7D%0Ah1%2C%0Ah2%2C%0Ah3%2C%0Ah4%2C%0Ah5%2C%0Ah6%20%7B%0Amargin%2Dtop%3A%2015px%3B%0Amargin%2Dbottom%3A%2015px%3B%0Aline%2Dheight%3A%201%2E1%3B%0A%7D%0Ah1%20%7B%0Afont%2Dsize%3A%2030px%3B%0A%7D%0Ah2%20%7B%0Afont%2Dsize%3A%2021px%3B%0A%7D%0Ah3%20%7B%0Afont%2Dsize%3A%2016px%3B%0A%7D%0Ah4%20%7B%0Afont%2Dsize%3A%2014px%3B%0A%7D%0Ah5%20%7B%0Afont%2Dsize%3A%2012px%3B%0A%7D%0Ah6%20%7B%0Afont%2Dsize%3A%2011px%3B%0A%7D%0Ablockquote%20%7B%0Amargin%3A%200%3B%0A%7D%0Aul%2C%0Aol%20%7B%0Apadding%3A%200%3B%0Amargin%2Dtop%3A%200%3B%0Amargin%2Dbottom%3A%200%3B%0A%7D%0Aol%20ol%2C%0Aul%20ol%20%7B%0Alist%2Dstyle%2Dtype%3A%20lower%2Droman%3B%0A%7D%0Aul%20ul%20ol%2C%0Aul%20ol%20ol%2C%0Aol%20ul%20ol%2C%0Aol%20ol%20ol%20%7B%0Alist%2Dstyle%2Dtype%3A%20lower%2Dalpha%3B%0A%7D%0Add%20%7B%0Amargin%2Dleft%3A%200%3B%0A%7D%0Acode%20%7B%0Afont%2Dfamily%3A%20Consolas%2C%20%22Liberation%20Mono%22%2C%20Menlo%2C%20Courier%2C%20monospace%3B%0Afont%2Dsize%3A%2012px%3B%0A%7D%0Apre%20%7B%0Amargin%2Dtop%3A%200%3B%0Amargin%2Dbottom%3A%200%3B%0Afont%3A%2012px%20Consolas%2C%20%22Liberation%20Mono%22%2C%20Menlo%2C%20Courier%2C%20monospace%3B%0A%7D%0A%2Eselect%3A%3A%2Dms%2Dexpand%20%7B%0Aopacity%3A%200%3B%0A%7D%0A%2Eocticon%20%7B%0Afont%3A%20normal%20normal%20normal%2016px%2F1%20octicons%2Dlink%3B%0Adisplay%3A%20inline%2Dblock%3B%0Atext%2Ddecoration%3A%20none%3B%0Atext%2Drendering%3A%20auto%3B%0A%2Dwebkit%2Dfont%2Dsmoothing%3A%20antialiased%3B%0A%2Dmoz%2Dosx%2Dfont%2Dsmoothing%3A%20grayscale%3B%0A%2Dwebkit%2Duser%2Dselect%3A%20none%3B%0A%2Dmoz%2Duser%2Dselect%3A%20none%3B%0A%2Dms%2Duser%2Dselect%3A%20none%3B%0Auser%2Dselect%3A%20none%3B%0A%7D%0A%2Eocticon%2Dlink%3Abefore%20%7B%0Acontent%3A%20%27%5Cf05c%27%3B%0A%7D%0A%2Emarkdown%2Dbody%3Abefore%20%7B%0Adisplay%3A%20table%3B%0Acontent%3A%20%22%22%3B%0A%7D%0A%2Emarkdown%2Dbody%3Aafter%20%7B%0Adisplay%3A%20table%3B%0Aclear%3A%20both%3B%0Acontent%3A%20%22%22%3B%0A%7D%0A%2Emarkdown%2Dbody%3E%2A%3Afirst%2Dchild%20%7B%0Amargin%2Dtop%3A%200%20%21important%3B%0A%7D%0A%2Emarkdown%2Dbody%3E%2A%3Alast%2Dchild%20%7B%0Amargin%2Dbottom%3A%200%20%21important%3B%0A%7D%0Aa%3Anot%28%5Bhref%5D%29%20%7B%0Acolor%3A%20inherit%3B%0Atext%2Ddecoration%3A%20none%3B%0A%7D%0A%2Eanchor%20%7B%0Adisplay%3A%20inline%2Dblock%3B%0Apadding%2Dright%3A%202px%3B%0Amargin%2Dleft%3A%20%2D18px%3B%0A%7D%0A%2Eanchor%3Afocus%20%7B%0Aoutline%3A%20none%3B%0A%7D%0Ah1%2C%0Ah2%2C%0Ah3%2C%0Ah4%2C%0Ah5%2C%0Ah6%20%7B%0Amargin%2Dtop%3A%201em%3B%0Amargin%2Dbottom%3A%2016px%3B%0Afont%2Dweight%3A%20bold%3B%0Aline%2Dheight%3A%201%2E4%3B%0A%7D%0Ah1%20%2Eocticon%2Dlink%2C%0Ah2%20%2Eocticon%2Dlink%2C%0Ah3%20%2Eocticon%2Dlink%2C%0Ah4%20%2Eocticon%2Dlink%2C%0Ah5%20%2Eocticon%2Dlink%2C%0Ah6%20%2Eocticon%2Dlink%20%7B%0Acolor%3A%20%23000%3B%0Avertical%2Dalign%3A%20middle%3B%0Avisibility%3A%20hidden%3B%0A%7D%0Ah1%3Ahover%20%2Eanchor%2C%0Ah2%3Ahover%20%2Eanchor%2C%0Ah3%3Ahover%20%2Eanchor%2C%0Ah4%3Ahover%20%2Eanchor%2C%0Ah5%3Ahover%20%2Eanchor%2C%0Ah6%3Ahover%20%2Eanchor%20%7B%0Atext%2Ddecoration%3A%20none%3B%0A%7D%0Ah1%3Ahover%20%2Eanchor%20%2Eocticon%2Dlink%2C%0Ah2%3Ahover%20%2Eanchor%20%2Eocticon%2Dlink%2C%0Ah3%3Ahover%20%2Eanchor%20%2Eocticon%2Dlink%2C%0Ah4%3Ahover%20%2Eanchor%20%2Eocticon%2Dlink%2C%0Ah5%3Ahover%20%2Eanchor%20%2Eocticon%2Dlink%2C%0Ah6%3Ahover%20%2Eanchor%20%2Eocticon%2Dlink%20%7B%0Avisibility%3A%20visible%3B%0A%7D%0Ah1%20%7B%0Apadding%2Dbottom%3A%200%2E3em%3B%0Afont%2Dsize%3A%202%2E25em%3B%0Aline%2Dheight%3A%201%2E2%3B%0Aborder%2Dbottom%3A%201px%20solid%20%23eee%3B%0A%7D%0Ah1%20%2Eanchor%20%7B%0Aline%2Dheight%3A%201%3B%0A%7D%0Ah2%20%7B%0Apadding%2Dbottom%3A%200%2E3em%3B%0Afont%2Dsize%3A%201%2E75em%3B%0Aline%2Dheight%3A%201%2E225%3B%0Aborder%2Dbottom%3A%201px%20solid%20%23eee%3B%0A%7D%0Ah2%20%2Eanchor%20%7B%0Aline%2Dheight%3A%201%3B%0A%7D%0Ah3%20%7B%0Afont%2Dsize%3A%201%2E5em%3B%0Aline%2Dheight%3A%201%2E43%3B%0A%7D%0Ah3%20%2Eanchor%20%7B%0Aline%2Dheight%3A%201%2E2%3B%0A%7D%0Ah4%20%7B%0Afont%2Dsize%3A%201%2E25em%3B%0A%7D%0Ah4%20%2Eanchor%20%7B%0Aline%2Dheight%3A%201%2E2%3B%0A%7D%0Ah5%20%7B%0Afont%2Dsize%3A%201em%3B%0A%7D%0Ah5%20%2Eanchor%20%7B%0Aline%2Dheight%3A%201%2E1%3B%0A%7D%0Ah6%20%7B%0Afont%2Dsize%3A%201em%3B%0Acolor%3A%20%23777%3B%0A%7D%0Ah6%20%2Eanchor%20%7B%0Aline%2Dheight%3A%201%2E1%3B%0A%7D%0Ap%2C%0Ablockquote%2C%0Aul%2C%0Aol%2C%0Adl%2C%0Atable%2C%0Apre%20%7B%0Amargin%2Dtop%3A%200%3B%0Amargin%2Dbottom%3A%2016px%3B%0A%7D%0Ahr%20%7B%0Aheight%3A%204px%3B%0Apadding%3A%200%3B%0Amargin%3A%2016px%200%3B%0Abackground%2Dcolor%3A%20%23e7e7e7%3B%0Aborder%3A%200%20none%3B%0A%7D%0Aul%2C%0Aol%20%7B%0Apadding%2Dleft%3A%202em%3B%0A%7D%0Aul%20ul%2C%0Aul%20ol%2C%0Aol%20ol%2C%0Aol%20ul%20%7B%0Amargin%2Dtop%3A%200%3B%0Amargin%2Dbottom%3A%200%3B%0A%7D%0Ali%3Ep%20%7B%0Amargin%2Dtop%3A%2016px%3B%0A%7D%0Adl%20%7B%0Apadding%3A%200%3B%0A%7D%0Adl%20dt%20%7B%0Apadding%3A%200%3B%0Amargin%2Dtop%3A%2016px%3B%0Afont%2Dsize%3A%201em%3B%0Afont%2Dstyle%3A%20italic%3B%0Afont%2Dweight%3A%20bold%3B%0A%7D%0Adl%20dd%20%7B%0Apadding%3A%200%2016px%3B%0Amargin%2Dbottom%3A%2016px%3B%0A%7D%0Ablockquote%20%7B%0Apadding%3A%200%2015px%3B%0Acolor%3A%20%23777%3B%0Aborder%2Dleft%3A%204px%20solid%20%23ddd%3B%0A%7D%0Ablockquote%3E%3Afirst%2Dchild%20%7B%0Amargin%2Dtop%3A%200%3B%0A%7D%0Ablockquote%3E%3Alast%2Dchild%20%7B%0Amargin%2Dbottom%3A%200%3B%0A%7D%0Atable%20%7B%0Adisplay%3A%20block%3B%0Awidth%3A%20100%25%3B%0Aoverflow%3A%20auto%3B%0Aword%2Dbreak%3A%20normal%3B%0Aword%2Dbreak%3A%20keep%2Dall%3B%0A%7D%0Atable%20th%20%7B%0Afont%2Dweight%3A%20bold%3B%0A%7D%0Atable%20th%2C%0Atable%20td%20%7B%0Apadding%3A%206px%2013px%3B%0Aborder%3A%201px%20solid%20%23ddd%3B%0A%7D%0Atable%20tr%20%7B%0Abackground%2Dcolor%3A%20%23fff%3B%0Aborder%2Dtop%3A%201px%20solid%20%23ccc%3B%0A%7D%0Atable%20tr%3Anth%2Dchild%282n%29%20%7B%0Abackground%2Dcolor%3A%20%23f8f8f8%3B%0A%7D%0Aimg%20%7B%0Amax%2Dwidth%3A%20100%25%3B%0Abox%2Dsizing%3A%20content%2Dbox%3B%0Abackground%2Dcolor%3A%20%23fff%3B%0A%7D%0Acode%20%7B%0Apadding%3A%200%3B%0Apadding%2Dtop%3A%200%2E2em%3B%0Apadding%2Dbottom%3A%200%2E2em%3B%0Amargin%3A%200%3B%0Afont%2Dsize%3A%2085%25%3B%0Abackground%2Dcolor%3A%20rgba%280%2C0%2C0%2C0%2E04%29%3B%0Aborder%2Dradius%3A%203px%3B%0A%7D%0Acode%3Abefore%2C%0Acode%3Aafter%20%7B%0Aletter%2Dspacing%3A%20%2D0%2E2em%3B%0Acontent%3A%20%22%5C00a0%22%3B%0A%7D%0Apre%3Ecode%20%7B%0Apadding%3A%200%3B%0Amargin%3A%200%3B%0Afont%2Dsize%3A%20100%25%3B%0Aword%2Dbreak%3A%20normal%3B%0Awhite%2Dspace%3A%20pre%3B%0Abackground%3A%20transparent%3B%0Aborder%3A%200%3B%0A%7D%0A%2Ehighlight%20%7B%0Amargin%2Dbottom%3A%2016px%3B%0A%7D%0A%2Ehighlight%20pre%2C%0Apre%20%7B%0Apadding%3A%2016px%3B%0Aoverflow%3A%20auto%3B%0Afont%2Dsize%3A%2085%25%3B%0Aline%2Dheight%3A%201%2E45%3B%0Abackground%2Dcolor%3A%20%23f7f7f7%3B%0Aborder%2Dradius%3A%203px%3B%0A%7D%0A%2Ehighlight%20pre%20%7B%0Amargin%2Dbottom%3A%200%3B%0Aword%2Dbreak%3A%20normal%3B%0A%7D%0Apre%20%7B%0Aword%2Dwrap%3A%20normal%3B%0A%7D%0Apre%20code%20%7B%0Adisplay%3A%20inline%3B%0Amax%2Dwidth%3A%20initial%3B%0Apadding%3A%200%3B%0Amargin%3A%200%3B%0Aoverflow%3A%20initial%3B%0Aline%2Dheight%3A%20inherit%3B%0Aword%2Dwrap%3A%20normal%3B%0Abackground%2Dcolor%3A%20transparent%3B%0Aborder%3A%200%3B%0A%7D%0Apre%20code%3Abefore%2C%0Apre%20code%3Aafter%20%7B%0Acontent%3A%20normal%3B%0A%7D%0Akbd%20%7B%0Adisplay%3A%20inline%2Dblock%3B%0Apadding%3A%203px%205px%3B%0Afont%2Dsize%3A%2011px%3B%0Aline%2Dheight%3A%2010px%3B%0Acolor%3A%20%23555%3B%0Avertical%2Dalign%3A%20middle%3B%0Abackground%2Dcolor%3A%20%23fcfcfc%3B%0Aborder%3A%20solid%201px%20%23ccc%3B%0Aborder%2Dbottom%2Dcolor%3A%20%23bbb%3B%0Aborder%2Dradius%3A%203px%3B%0Abox%2Dshadow%3A%20inset%200%20%2D1px%200%20%23bbb%3B%0A%7D%0A%2Epl%2Dc%20%7B%0Acolor%3A%20%23969896%3B%0A%7D%0A%2Epl%2Dc1%2C%0A%2Epl%2Ds%20%2Epl%2Dv%20%7B%0Acolor%3A%20%230086b3%3B%0A%7D%0A%2Epl%2De%2C%0A%2Epl%2Den%20%7B%0Acolor%3A%20%23795da3%3B%0A%7D%0A%2Epl%2Ds%20%2Epl%2Ds1%2C%0A%2Epl%2Dsmi%20%7B%0Acolor%3A%20%23333%3B%0A%7D%0A%2Epl%2Dent%20%7B%0Acolor%3A%20%2363a35c%3B%0A%7D%0A%2Epl%2Dk%20%7B%0Acolor%3A%20%23a71d5d%3B%0A%7D%0A%2Epl%2Dpds%2C%0A%2Epl%2Ds%2C%0A%2Epl%2Ds%20%2Epl%2Dpse%20%2Epl%2Ds1%2C%0A%2Epl%2Dsr%2C%0A%2Epl%2Dsr%20%2Epl%2Dcce%2C%0A%2Epl%2Dsr%20%2Epl%2Dsra%2C%0A%2Epl%2Dsr%20%2Epl%2Dsre%20%7B%0Acolor%3A%20%23183691%3B%0A%7D%0A%2Epl%2Dv%20%7B%0Acolor%3A%20%23ed6a43%3B%0A%7D%0A%2Epl%2Did%20%7B%0Acolor%3A%20%23b52a1d%3B%0A%7D%0A%2Epl%2Dii%20%7B%0Abackground%2Dcolor%3A%20%23b52a1d%3B%0Acolor%3A%20%23f8f8f8%3B%0A%7D%0A%2Epl%2Dsr%20%2Epl%2Dcce%20%7B%0Acolor%3A%20%2363a35c%3B%0Afont%2Dweight%3A%20bold%3B%0A%7D%0A%2Epl%2Dml%20%7B%0Acolor%3A%20%23693a17%3B%0A%7D%0A%2Epl%2Dmh%2C%0A%2Epl%2Dmh%20%2Epl%2Den%2C%0A%2Epl%2Dms%20%7B%0Acolor%3A%20%231d3e81%3B%0Afont%2Dweight%3A%20bold%3B%0A%7D%0A%2Epl%2Dmq%20%7B%0Acolor%3A%20%23008080%3B%0A%7D%0A%2Epl%2Dmi%20%7B%0Acolor%3A%20%23333%3B%0Afont%2Dstyle%3A%20italic%3B%0A%7D%0A%2Epl%2Dmb%20%7B%0Acolor%3A%20%23333%3B%0Afont%2Dweight%3A%20bold%3B%0A%7D%0A%2Epl%2Dmd%20%7B%0Abackground%2Dcolor%3A%20%23ffecec%3B%0Acolor%3A%20%23bd2c00%3B%0A%7D%0A%2Epl%2Dmi1%20%7B%0Abackground%2Dcolor%3A%20%23eaffea%3B%0Acolor%3A%20%2355a532%3B%0A%7D%0A%2Epl%2Dmdr%20%7B%0Acolor%3A%20%23795da3%3B%0Afont%2Dweight%3A%20bold%3B%0A%7D%0A%2Epl%2Dmo%20%7B%0Acolor%3A%20%231d3e81%3B%0A%7D%0Akbd%20%7B%0Adisplay%3A%20inline%2Dblock%3B%0Apadding%3A%203px%205px%3B%0Afont%3A%2011px%20Consolas%2C%20%22Liberation%20Mono%22%2C%20Menlo%2C%20Courier%2C%20monospace%3B%0Aline%2Dheight%3A%2010px%3B%0Acolor%3A%20%23555%3B%0Avertical%2Dalign%3A%20middle%3B%0Abackground%2Dcolor%3A%20%23fcfcfc%3B%0Aborder%3A%20solid%201px%20%23ccc%3B%0Aborder%2Dbottom%2Dcolor%3A%20%23bbb%3B%0Aborder%2Dradius%3A%203px%3B%0Abox%2Dshadow%3A%20inset%200%20%2D1px%200%20%23bbb%3B%0A%7D%0A%2Etask%2Dlist%2Ditem%20%7B%0Alist%2Dstyle%2Dtype%3A%20none%3B%0A%7D%0A%2Etask%2Dlist%2Ditem%2B%2Etask%2Dlist%2Ditem%20%7B%0Amargin%2Dtop%3A%203px%3B%0A%7D%0A%2Etask%2Dlist%2Ditem%20input%20%7B%0Amargin%3A%200%200%2E35em%200%2E25em%20%2D1%2E6em%3B%0Avertical%2Dalign%3A%20middle%3B%0A%7D%0A%3Achecked%2B%2Eradio%2Dlabel%20%7B%0Az%2Dindex%3A%201%3B%0Aposition%3A%20relative%3B%0Aborder%2Dcolor%3A%20%234078c0%3B%0A%7D%0A%2EsourceLine%20%7B%0Adisplay%3A%20inline%2Dblock%3B%0A%7D%0Acode%20%2Ekw%20%7B%20color%3A%20%23000000%3B%20%7D%0Acode%20%2Edt%20%7B%20color%3A%20%23ed6a43%3B%20%7D%0Acode%20%2Edv%20%7B%20color%3A%20%23009999%3B%20%7D%0Acode%20%2Ebn%20%7B%20color%3A%20%23009999%3B%20%7D%0Acode%20%2Efl%20%7B%20color%3A%20%23009999%3B%20%7D%0Acode%20%2Ech%20%7B%20color%3A%20%23009999%3B%20%7D%0Acode%20%2Est%20%7B%20color%3A%20%23183691%3B%20%7D%0Acode%20%2Eco%20%7B%20color%3A%20%23969896%3B%20%7D%0Acode%20%2Eot%20%7B%20color%3A%20%230086b3%3B%20%7D%0Acode%20%2Eal%20%7B%20color%3A%20%23a61717%3B%20%7D%0Acode%20%2Efu%20%7B%20color%3A%20%2363a35c%3B%20%7D%0Acode%20%2Eer%20%7B%20color%3A%20%23a61717%3B%20background%2Dcolor%3A%20%23e3d2d2%3B%20%7D%0Acode%20%2Ewa%20%7B%20color%3A%20%23000000%3B%20%7D%0Acode%20%2Ecn%20%7B%20color%3A%20%23008080%3B%20%7D%0Acode%20%2Esc%20%7B%20color%3A%20%23008080%3B%20%7D%0Acode%20%2Evs%20%7B%20color%3A%20%23183691%3B%20%7D%0Acode%20%2Ess%20%7B%20color%3A%20%23183691%3B%20%7D%0Acode%20%2Eim%20%7B%20color%3A%20%23000000%3B%20%7D%0Acode%20%2Eva%20%7Bcolor%3A%20%23008080%3B%20%7D%0Acode%20%2Ecf%20%7B%20color%3A%20%23000000%3B%20%7D%0Acode%20%2Eop%20%7B%20color%3A%20%23000000%3B%20%7D%0Acode%20%2Ebu%20%7B%20color%3A%20%23000000%3B%20%7D%0Acode%20%2Eex%20%7B%20color%3A%20%23000000%3B%20%7D%0Acode%20%2Epp%20%7B%20color%3A%20%23999999%3B%20%7D%0Acode%20%2Eat%20%7B%20color%3A%20%23008080%3B%20%7D%0Acode%20%2Edo%20%7B%20color%3A%20%23969896%3B%20%7D%0Acode%20%2Ean%20%7B%20color%3A%20%23008080%3B%20%7D%0Acode%20%2Ecv%20%7B%20color%3A%20%23008080%3B%20%7D%0Acode%20%2Ein%20%7B%20color%3A%20%23008080%3B%20%7D%0A" rel="stylesheet">
+<style>
+body {
+  box-sizing: border-box;
+  min-width: 200px;
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 45px;
+  padding-top: 0px;
+}
+</style>
+
+</head>
+
+<body>
+
+<h1 id="simple-htssip-example">Simple HTSSIP example</h1>
+<p>Samuel Barnett<br />
+31 May, 2019</p>
+<ul>
+<li>Introduction</li>
+<li>Testing treatment-control beta-diversity</li>
+<li>MW-HR-SIP</li>
+<li>Plotting OTU relative abundance over the gradient</li>
+<li>More examples</li>
+<li>Session Info</li>
+</ul>
+<h2 id="introduction">Introduction</h2>
+<p>This tutorial takes you through a simple example analyzing amplicon based DNA-SIP data with a real dataset using the MW-HR-SIP method. The files used in this tutorial can be found with this github site under the directory <a href="HR-SIP_example/example_data">example_data</a>.</p>
+<p>The analyses showcased here include:</p>
+<ul>
+<li>Testing treatment-control beta-diversity</li>
+<li>Identifying isotope incorporators with MW-HR-SIP</li>
+<li>Displaying an incorporator's relative abundance distribution across density fractions</li>
+</ul>
+<p>For more details on designing and performing DNA-SIP experiments, please refer to the following select sources:</p>
+<ul>
+<li>Pepe-Ranney C, Campbell AN, Koechli CN, Berthrong S and Buckley DH (2016) Unearthing the Ecology of Soil Microorganisms Using a High Resolution DNA-SIP Approach to Explore Cellulose and Xylose Metabolism in Soil. Front. Microbiol. 7:703. doi: <a href="https://www.frontiersin.org/articles/10.3389/fmicb.2016.00703/full">10.3389/fmicb.2016.00703</a></li>
+<li>Youngblut ND, Barnett SE, Buckley DH (2018) HTSSIP: An R package for analysis of high throughput sequencing data from nucleic acid stable isotope probing (SIP) experiments. PLoS ONE 13(1): e0189616. doi: <a href="https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0189616">10.1371/journal.pone.0189616</a></li>
+<li>Youngblut ND, Barnett SE and Buckley DH (2018) SIPSim: A Modeling Toolkit to Predict Accuracy and Aid Design of DNA-SIP Experiments. Front. Microbiol. 9:570. doi: <a href="https://www.frontiersin.org/articles/10.3389/fmicb.2018.00570/full">10.3389/fmicb.2018.00570</a></li>
+</ul>
+<h3 id="r-packages-needed">R packages needed</h3>
+<p>As with any R script, the first thing to do is to load the namespace of packages that will be used in the analysis.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Packages needed for data handling</span>
+<span class="kw">library</span>(dplyr)
+<span class="kw">library</span>(tidyr)
+<span class="kw">library</span>(tibble)
+
+<span class="co"># Packages needed for analysis</span>
+<span class="kw">library</span>(phyloseq)   <span class="co"># Used for handling our data format and wraping some functions found in other packages, mainly vegan</span>
+<span class="kw">library</span>(HTSSIP)     <span class="co"># Contains the main methods used in this analysis</span>
+
+<span class="co"># Packages needed for plotting</span>
+<span class="kw">library</span>(ggplot2)
+
+<span class="co"># Packages used to make this Rmarkdown notebook look nice</span>
+<span class="kw">library</span>(knitr)
+<span class="kw">library</span>(kableExtra)</code></pre></div>
+<h2 id="testing-treatment-control-beta-diversity">Testing treatment-control beta-diversity</h2>
+<p>Prior to running MW-HR-SIP it is recommended that you check the dissimilarity between the unfractionated treatment and control samples. An unfractionated sample is simply DNA that was extracted from the microcosms and sequenced as-is; no CsCl gradient fractionation. Ideally, as both treatment and control samples were treated the same, with the exception that treatment samples got isotopically labled substrates and controls got unlabled substrates, the communities should be fairly similar. If the treatment and control samples are wildly dissimilar, then it is a sign that there is some systematic difference between the treatment and control and caution should be taken with further analysis. We recommend calculating this beta-diversity using the Bray-Curtis dissimilarity. Ideal dissimilarity between each treatment and its control should less than 0.2.</p>
+<h4 id="import-data">1. Import data</h4>
+<p>Unfractionated sample data can be found in the file &quot;unfractionated_phyloseq.rds&quot;. This is an R object containing the data in phyloseq format.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Import the data you using the readRDS() function</span>
+unfrac.physeq &lt;-<span class="st"> </span><span class="kw">readRDS</span>(<span class="st">&quot;../example_data/unfractionated_phyloseq.rds&quot;</span>)
+
+<span class="co"># What does this phyloseq object look like?</span>
+unfrac.physeq</code></pre></div>
+<pre><code>## phyloseq-class experiment-level object
+## otu_table()   OTU Table:         [ 1533 taxa and 2 samples ]
+## sample_data() Sample Data:       [ 2 samples by 5 sample variables ]
+## tax_table()   Taxonomy Table:    [ 1533 taxa by 7 taxonomic ranks ]
+## phy_tree()    Phylogenetic Tree: [ 1533 tips and 1532 internal nodes ]</code></pre>
+<h4 id="rarefy-the-read-counts-to-an-even-depth">2. Rarefy the read counts to an even depth:</h4>
+<p>Before measuring the beta diversity you need to account for differences in sequencing depth between samples. One common way to do this is by rarefying to an equal depth. There are a number of other ways to do this as well.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Before you rarefy, it is good to set the seed so that you can replicate this somewhat stochastic step. Note this was not shown in the chapter.</span>
+<span class="kw">set.seed</span>(<span class="dv">4242</span>)
+
+<span class="co"># Rarefy the data in each of the contrasts.</span>
+unfrac.physeq &lt;-<span class="st"> </span><span class="kw">rarefy_even_depth</span>(unfrac.physeq)
+
+<span class="co"># Now what does this phyloseq object look like?</span>
+unfrac.physeq</code></pre></div>
+<pre><code>## phyloseq-class experiment-level object
+## otu_table()   OTU Table:         [ 1298 taxa and 2 samples ]
+## sample_data() Sample Data:       [ 2 samples by 5 sample variables ]
+## tax_table()   Taxonomy Table:    [ 1298 taxa by 7 taxonomic ranks ]
+## phy_tree()    Phylogenetic Tree: [ 1298 tips and 1297 internal nodes ]</code></pre>
+<h4 id="calculate-bray-curtis-dissimilarity-between-samples">3. Calculate Bray-Curtis dissimilarity between samples:</h4>
+<p>Now you can calculate the Bray-Curtis dissimilarity between your samples.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Calculate the Bray-Curtis dissimilarity for each comparison</span>
+unfrac.dist &lt;-<span class="st"> </span>phyloseq::<span class="kw">distance</span>(unfrac.physeq, <span class="st">&quot;bray&quot;</span>)
+
+<span class="co"># Print the results</span>
+unfrac.dist</code></pre></div>
+<pre><code>##         13C-Ami
+## 12C-Con 0.26981</code></pre>
+<p>As you can see, the dissimilarity between treatment and control is a bit higher than 0.2. This is ok, as values around this are common and often unavoidable with real world datasets. However, caution may be warranted when interpereting the results.</p>
+<h2 id="mw-hr-sip">MW-HR-SIP</h2>
+<p>Now it is time to run the MW-HR-SIP pipeline to identify isotopically labeled OTUs. This example will just be comparing a single treatment with its control. In most studies, there will be many treatments and corresponding controls. To handle this you can use the function <code>phyloseq_subset()</code> to split your starting phyloseq into a list of treatment-control pairs and then run <code>HRSIP()</code> on this list. An example of this can be found in <a href="https://github.com/buckleylab/HR-SIP_example/HRSIP_multiple_samples.html">HRSIP_multiple_samples.html</a> as well as the <a href="https://cran.r-project.org/web/packages/HTSSIP/vignettes/HTSSIP_intro.html">HTSSIP vignette</a>.</p>
+<h4 id="import-data-1">1. Import data</h4>
+<p>The data from the gradent fractions can be found in file &quot;SIP_phyloseq.rds&quot;. As before this is an R object containing the data in phyloseq format.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Import the data you using the readRDS() function</span>
+SIP.physeq &lt;-<span class="st"> </span><span class="kw">readRDS</span>(<span class="st">&quot;../example_data/SIP_phyloseq.rds&quot;</span>)
+
+<span class="co"># What does this phyloseq object look like?</span>
+SIP.physeq</code></pre></div>
+<pre><code>## phyloseq-class experiment-level object
+## otu_table()   OTU Table:         [ 8102 taxa and 47 samples ]
+## sample_data() Sample Data:       [ 47 samples by 5 sample variables ]
+## tax_table()   Taxonomy Table:    [ 8102 taxa by 7 taxonomic ranks ]
+## phy_tree()    Phylogenetic Tree: [ 8102 tips and 8101 internal nodes ]</code></pre>
+<h4 id="convert-contrasting-parameters-to-factor-and-order">2. Convert contrasting parameters to factor and order</h4>
+<p>In this example the contrast (i.e. variable identifying treatment fractions from control fractions), is <code>substrate</code>. HRSIP uses DESeq2 to identify labeled OTUs and DESeq2 requires that the contrasting variable be a factor rather than a character vector. Additionally, factors need to be ordered in such a way that identifies which factor is the treatment and which is the control. For more information on this check out the documentation for DESeq2.</p>
+<p>In this case you need to convert the variable &quot;substrate&quot; in the sample metadata to a factor and order it as &quot;12C-Con, 13C-Ami&quot;, with control first, and treament second.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Pull out sample metadata from the phyloseq object</span>
+metadata &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="kw">sample_data</span>(SIP.physeq), <span class="dt">stringsAsFactors =</span> F)
+
+<span class="co"># Modify substrate variable as described above</span>
+metadata$substrate &lt;-<span class="st"> </span><span class="kw">factor</span>(metadata$substrate, <span class="dt">level=</span><span class="kw">c</span>(<span class="st">&quot;12C-Con&quot;</span>, <span class="st">&quot;13C-Ami&quot;</span>))
+
+<span class="co"># Replace sample metadata in phyloseq object with the newly modified metadata</span>
+<span class="kw">rownames</span>(metadata) &lt;-<span class="st"> </span>metadata$Sample_ID
+<span class="kw">sample_data</span>(SIP.physeq) &lt;-<span class="st"> </span><span class="kw">sample_data</span>(metadata)</code></pre></div>
+<h4 id="generate-list-of-buoyant-density-windows-list-of-sparsity-threshold-cutoffs-and-set-the-p-value-cutoff">3. Generate list of buoyant density windows, list of sparsity threshold cutoffs, and set the p-value cutoff:</h4>
+<p>Before running the MW-HR-SIP you need to set some important parameters:</p>
+<ul>
+<li><strong>Windows</strong>: The overlaping bouyant density windows you want to analyze. You will be comparing the read counts of OTUs between the treatment and control fractions within these bouyant density windows. <code>density_min</code> refers to the minimum BD of each window. <code>density_max</code> refers to the maximum BD of each window. Make sure that there are at least 3 fractions each from the treatment and control within each window.</li>
+<li><strong>Sparsity</strong>: The sparsity thresholds used to remove OTUs found in very few fractions. Removing these increases your statistical power as it reduces the number of comparisons maked. You want to run this analysis with multiple sparsity threshold cutoffs and choose the one resulting in the most power or the most rejected null hypotheses.</li>
+<li><strong>p-value cutoff</strong>: The p-value cutoff below which an OTU is considered significantly enriched in the treatment compared to the control. OTUs with an adjusted p-value below this cutoff will be designated isotopically labeled.</li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Set BD windows</span>
+windows &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">density_min=</span><span class="kw">c</span>(<span class="fl">1.70</span>, <span class="fl">1.72</span>, <span class="fl">1.74</span>), 
+                     <span class="dt">density_max=</span><span class="kw">c</span>(<span class="fl">1.73</span>, <span class="fl">1.75</span>, <span class="fl">1.77</span>))
+
+<span class="co"># Set sparsity thresholds</span>
+sparsity_list &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">0</span>, <span class="fl">0.15</span>, <span class="fl">0.30</span>)
+
+<span class="co"># Set pvalue_cutoff</span>
+pvalue_cutoff &lt;-<span class="st"> </span><span class="fl">0.05</span></code></pre></div>
+<h4 id="run-mw-hr-sip">4. Run MW-HR-SIP:</h4>
+<p>Now you can run the MW-HR-SIP analysis on the data. As you are comparing between &quot;12C-Con&quot; controls and &quot;13C-Ami&quot; treatment samples, the flag <code>design</code> will be <code>~substrate</code> indicating that the variable <code>substrate</code> separates treatment from control. This part may take some time to run. For those with multiple core machines, you can run this step in parallel to speed it up. For more on this see the <a href="https://cran.r-project.org/web/packages/HTSSIP/vignettes/MW_HR_SIP.html">HTSSIP vignettes</a>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">l2fc.df &lt;-<span class="st"> </span><span class="kw">HRSIP</span>(SIP.physeq, 
+                <span class="dt">density_windows =</span> windows,
+                <span class="dt">design =</span> ~substrate, 
+                <span class="dt">padj_cutoff =</span> pvalue_cutoff,
+                <span class="dt">sparsity_threshold =</span> sparsity_list)</code></pre></div>
+<pre><code>## Sparsity threshold: 0 
+## Density window: 1.7-1.73 
+## Sparsity threshold: 0.15 
+## Density window: 1.7-1.73 
+## Sparsity threshold: 0.3 
+## Density window: 1.7-1.73 
+## Sparsity threshold: 0 
+## Density window: 1.72-1.75 
+## Sparsity threshold: 0.15 
+## Density window: 1.72-1.75 
+## Sparsity threshold: 0.3 
+## Density window: 1.72-1.75 
+## Sparsity threshold: 0 
+## Density window: 1.74-1.77 
+## Sparsity threshold: 0.15 
+## Density window: 1.74-1.77 
+## Sparsity threshold: 0.3 
+## Density window: 1.74-1.77 
+## Sparsity threshold with the most rejected hypotheses: 0.3</code></pre>
+<p>Now you can view the results. Note that this code may look slightly different than in the chapter, mostly to make the output look nice from Rmarkdown. To select just the OTUs that are identified as labeled, filter the dataframe such that <code>padj &lt;= pvalue_cutoff</code>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># What does the full output dataframe look like? Print out the first 10 entries.</span>
+<span class="kw">kable</span>(<span class="kw">head</span>(l2fc.df, <span class="dt">n=</span><span class="dv">10</span>), <span class="st">&quot;html&quot;</span>) %&gt;%
+<span class="st">  </span><span class="kw">kable_styling</span>() %&gt;%
+<span class="st">  </span><span class="kw">scroll_box</span>(<span class="dt">width =</span> <span class="st">&quot;100%&quot;</span>, <span class="dt">height=</span><span class="st">&quot;400px&quot;</span>)</code></pre></div>
+<table class="table" style="margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;">
+OTU
+</th>
+<th style="text-align:right;">
+log2FoldChange
+</th>
+<th style="text-align:right;">
+p
+</th>
+<th style="text-align:right;">
+padj
+</th>
+<th style="text-align:left;">
+Domain
+</th>
+<th style="text-align:left;">
+Phylum
+</th>
+<th style="text-align:left;">
+Class
+</th>
+<th style="text-align:left;">
+Order
+</th>
+<th style="text-align:left;">
+Family
+</th>
+<th style="text-align:left;">
+Genus
+</th>
+<th style="text-align:left;">
+Species
+</th>
+<th style="text-align:right;">
+density\_min
+</th>
+<th style="text-align:right;">
+density\_max
+</th>
+<th style="text-align:right;">
+sparsity\_threshold
+</th>
+<th style="text-align:left;">
+sparsity\_apply
+</th>
+<th style="text-align:right;">
+l2fc\_threshold
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+OTU.1925
+</td>
+<td style="text-align:right;">
+0.1605744
+</td>
+<td style="text-align:right;">
+0.5640337
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+Bacteria
+</td>
+<td style="text-align:left;">
+GAL15
+</td>
+<td style="text-align:left;">
+uncultured bacterium
+</td>
+<td style="text-align:left;">
+uncultured bacterium
+</td>
+<td style="text-align:left;">
+uncultured bacterium
+</td>
+<td style="text-align:left;">
+uncultured bacterium
+</td>
+<td style="text-align:left;">
+uncultured bacterium
+</td>
+<td style="text-align:right;">
+1.7
+</td>
+<td style="text-align:right;">
+1.73
+</td>
+<td style="text-align:right;">
+0.3
+</td>
+<td style="text-align:left;">
+all
+</td>
+<td style="text-align:right;">
+0.25
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+OTU.1059
+</td>
+<td style="text-align:right;">
+0.5038434
+</td>
+<td style="text-align:right;">
+0.4397103
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+Bacteria
+</td>
+<td style="text-align:left;">
+Chloroflexi
+</td>
+<td style="text-align:left;">
+TK10
+</td>
+<td style="text-align:left;">
+Ambiguous\_taxa
+</td>
+<td style="text-align:left;">
+Ambiguous\_taxa
+</td>
+<td style="text-align:left;">
+Ambiguous\_taxa
+</td>
+<td style="text-align:left;">
+Ambiguous\_taxa
+</td>
+<td style="text-align:right;">
+1.7
+</td>
+<td style="text-align:right;">
+1.73
+</td>
+<td style="text-align:right;">
+0.3
+</td>
+<td style="text-align:left;">
+all
+</td>
+<td style="text-align:right;">
+0.25
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+OTU.3570
+</td>
+<td style="text-align:right;">
+0.9273268
+</td>
+<td style="text-align:right;">
+0.3301830
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+Bacteria
+</td>
+<td style="text-align:left;">
+Chloroflexi
+</td>
+<td style="text-align:left;">
+Anaerolineae
+</td>
+<td style="text-align:left;">
+SBR1031
+</td>
+<td style="text-align:left;">
+A4b
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:right;">
+1.7
+</td>
+<td style="text-align:right;">
+1.73
+</td>
+<td style="text-align:right;">
+0.3
+</td>
+<td style="text-align:left;">
+all
+</td>
+<td style="text-align:right;">
+0.25
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+OTU.4370
+</td>
+<td style="text-align:right;">
+0.5345062
+</td>
+<td style="text-align:right;">
+0.4275791
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+Bacteria
+</td>
+<td style="text-align:left;">
+Chloroflexi
+</td>
+<td style="text-align:left;">
+Anaerolineae
+</td>
+<td style="text-align:left;">
+SBR1031
+</td>
+<td style="text-align:left;">
+uncultured bacterium
+</td>
+<td style="text-align:left;">
+uncultured bacterium
+</td>
+<td style="text-align:left;">
+uncultured bacterium
+</td>
+<td style="text-align:right;">
+1.7
+</td>
+<td style="text-align:right;">
+1.73
+</td>
+<td style="text-align:right;">
+0.3
+</td>
+<td style="text-align:left;">
+all
+</td>
+<td style="text-align:right;">
+0.25
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+OTU.2750
+</td>
+<td style="text-align:right;">
+0.2551156
+</td>
+<td style="text-align:right;">
+0.4993377
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+Bacteria
+</td>
+<td style="text-align:left;">
+Chloroflexi
+</td>
+<td style="text-align:left;">
+Anaerolineae
+</td>
+<td style="text-align:left;">
+SBR1031
+</td>
+<td style="text-align:left;">
+uncultured bacterium
+</td>
+<td style="text-align:left;">
+uncultured bacterium
+</td>
+<td style="text-align:left;">
+uncultured bacterium
+</td>
+<td style="text-align:right;">
+1.7
+</td>
+<td style="text-align:right;">
+1.73
+</td>
+<td style="text-align:right;">
+0.3
+</td>
+<td style="text-align:left;">
+all
+</td>
+<td style="text-align:right;">
+0.25
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+OTU.1833
+</td>
+<td style="text-align:right;">
+0.6757345
+</td>
+<td style="text-align:right;">
+0.3989177
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+Bacteria
+</td>
+<td style="text-align:left;">
+Chloroflexi
+</td>
+<td style="text-align:left;">
+Anaerolineae
+</td>
+<td style="text-align:left;">
+SBR1031
+</td>
+<td style="text-align:left;">
+A4b
+</td>
+<td style="text-align:left;">
+Ambiguous\_taxa
+</td>
+<td style="text-align:left;">
+Ambiguous\_taxa
+</td>
+<td style="text-align:right;">
+1.7
+</td>
+<td style="text-align:right;">
+1.73
+</td>
+<td style="text-align:right;">
+0.3
+</td>
+<td style="text-align:left;">
+all
+</td>
+<td style="text-align:right;">
+0.25
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+OTU.1272
+</td>
+<td style="text-align:right;">
+-0.2521604
+</td>
+<td style="text-align:right;">
+0.6960333
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+Bacteria
+</td>
+<td style="text-align:left;">
+Chloroflexi
+</td>
+<td style="text-align:left;">
+Anaerolineae
+</td>
+<td style="text-align:left;">
+RBG-13-54-9
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:right;">
+1.7
+</td>
+<td style="text-align:right;">
+1.73
+</td>
+<td style="text-align:right;">
+0.3
+</td>
+<td style="text-align:left;">
+all
+</td>
+<td style="text-align:right;">
+0.25
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+OTU.367
+</td>
+<td style="text-align:right;">
+1.7863947
+</td>
+<td style="text-align:right;">
+0.0831999
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+Bacteria
+</td>
+<td style="text-align:left;">
+Chloroflexi
+</td>
+<td style="text-align:left;">
+Anaerolineae
+</td>
+<td style="text-align:left;">
+Anaerolineales
+</td>
+<td style="text-align:left;">
+Anaerolineaceae
+</td>
+<td style="text-align:left;">
+Anaerolinea
+</td>
+<td style="text-align:left;">
+Ambiguous\_taxa
+</td>
+<td style="text-align:right;">
+1.7
+</td>
+<td style="text-align:right;">
+1.73
+</td>
+<td style="text-align:right;">
+0.3
+</td>
+<td style="text-align:left;">
+all
+</td>
+<td style="text-align:right;">
+0.25
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+OTU.2058
+</td>
+<td style="text-align:right;">
+1.6044902
+</td>
+<td style="text-align:right;">
+0.2022700
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+Bacteria
+</td>
+<td style="text-align:left;">
+Chloroflexi
+</td>
+<td style="text-align:left;">
+Ktedonobacteria
+</td>
+<td style="text-align:left;">
+Ktedonobacterales
+</td>
+<td style="text-align:left;">
+Ktedonobacteraceae
+</td>
+<td style="text-align:left;">
+FCPS473
+</td>
+<td style="text-align:left;">
+uncultured bacterium
+</td>
+<td style="text-align:right;">
+1.7
+</td>
+<td style="text-align:right;">
+1.73
+</td>
+<td style="text-align:right;">
+0.3
+</td>
+<td style="text-align:left;">
+all
+</td>
+<td style="text-align:right;">
+0.25
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+OTU.2194
+</td>
+<td style="text-align:right;">
+0.1408008
+</td>
+<td style="text-align:right;">
+0.5471573
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+Bacteria
+</td>
+<td style="text-align:left;">
+Chloroflexi
+</td>
+<td style="text-align:left;">
+Ktedonobacteria
+</td>
+<td style="text-align:left;">
+Ktedonobacterales
+</td>
+<td style="text-align:left;">
+Ktedonobacteraceae
+</td>
+<td style="text-align:left;">
+HSB OF53-F07
+</td>
+<td style="text-align:left;">
+uncultured bacterium
+</td>
+<td style="text-align:right;">
+1.7
+</td>
+<td style="text-align:right;">
+1.73
+</td>
+<td style="text-align:right;">
+0.3
+</td>
+<td style="text-align:left;">
+all
+</td>
+<td style="text-align:right;">
+0.25
+</td>
+</tr>
+</tbody>
+</table>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># How about the first 10 OTUs identified as labeled?</span>
+<span class="kw">kable</span>(<span class="kw">head</span>(l2fc.df[l2fc.df$padj &lt;=<span class="st"> </span>pvalue_cutoff,], <span class="dt">n=</span><span class="dv">10</span>), <span class="st">&quot;html&quot;</span>) %&gt;%
+<span class="st">  </span><span class="kw">kable_styling</span>() %&gt;%
+<span class="st">  </span><span class="kw">scroll_box</span>(<span class="dt">width =</span> <span class="st">&quot;100%&quot;</span>, <span class="dt">height=</span><span class="st">&quot;400px&quot;</span>)</code></pre></div>
+<table class="table" style="margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;">
+OTU
+</th>
+<th style="text-align:right;">
+log2FoldChange
+</th>
+<th style="text-align:right;">
+p
+</th>
+<th style="text-align:right;">
+padj
+</th>
+<th style="text-align:left;">
+Domain
+</th>
+<th style="text-align:left;">
+Phylum
+</th>
+<th style="text-align:left;">
+Class
+</th>
+<th style="text-align:left;">
+Order
+</th>
+<th style="text-align:left;">
+Family
+</th>
+<th style="text-align:left;">
+Genus
+</th>
+<th style="text-align:left;">
+Species
+</th>
+<th style="text-align:right;">
+density\_min
+</th>
+<th style="text-align:right;">
+density\_max
+</th>
+<th style="text-align:right;">
+sparsity\_threshold
+</th>
+<th style="text-align:left;">
+sparsity\_apply
+</th>
+<th style="text-align:right;">
+l2fc\_threshold
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+OTU.18059
+</td>
+<td style="text-align:right;">
+3.468161
+</td>
+<td style="text-align:right;">
+0.0001479
+</td>
+<td style="text-align:right;">
+0.0260126
+</td>
+<td style="text-align:left;">
+Bacteria
+</td>
+<td style="text-align:left;">
+Actinobacteria
+</td>
+<td style="text-align:left;">
+Actinobacteria
+</td>
+<td style="text-align:left;">
+Frankiales
+</td>
+<td style="text-align:left;">
+Acidothermaceae
+</td>
+<td style="text-align:left;">
+Acidothermus
+</td>
+<td style="text-align:left;">
+uncultured bacterium
+</td>
+<td style="text-align:right;">
+1.72
+</td>
+<td style="text-align:right;">
+1.75
+</td>
+<td style="text-align:right;">
+0.3
+</td>
+<td style="text-align:left;">
+all
+</td>
+<td style="text-align:right;">
+0.25
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+OTU.193
+</td>
+<td style="text-align:right;">
+3.759059
+</td>
+<td style="text-align:right;">
+0.0000000
+</td>
+<td style="text-align:right;">
+0.0000014
+</td>
+<td style="text-align:left;">
+Bacteria
+</td>
+<td style="text-align:left;">
+Proteobacteria
+</td>
+<td style="text-align:left;">
+Gammaproteobacteria
+</td>
+<td style="text-align:left;">
+Betaproteobacteriales
+</td>
+<td style="text-align:left;">
+Burkholderiaceae
+</td>
+<td style="text-align:left;">
+Cupriavidus
+</td>
+<td style="text-align:left;">
+Ambiguous\_taxa
+</td>
+<td style="text-align:right;">
+1.72
+</td>
+<td style="text-align:right;">
+1.75
+</td>
+<td style="text-align:right;">
+0.3
+</td>
+<td style="text-align:left;">
+all
+</td>
+<td style="text-align:right;">
+0.25
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+OTU.1
+</td>
+<td style="text-align:right;">
+1.596937
+</td>
+<td style="text-align:right;">
+0.0000127
+</td>
+<td style="text-align:right;">
+0.0029586
+</td>
+<td style="text-align:left;">
+Bacteria
+</td>
+<td style="text-align:left;">
+Proteobacteria
+</td>
+<td style="text-align:left;">
+Gammaproteobacteria
+</td>
+<td style="text-align:left;">
+Betaproteobacteriales
+</td>
+<td style="text-align:left;">
+Burkholderiaceae
+</td>
+<td style="text-align:left;">
+Burkholderia-Caballeronia-Paraburkholderia
+</td>
+<td style="text-align:left;">
+Ambiguous\_taxa
+</td>
+<td style="text-align:right;">
+1.72
+</td>
+<td style="text-align:right;">
+1.75
+</td>
+<td style="text-align:right;">
+0.3
+</td>
+<td style="text-align:left;">
+all
+</td>
+<td style="text-align:right;">
+0.25
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+OTU.66
+</td>
+<td style="text-align:right;">
+2.659613
+</td>
+<td style="text-align:right;">
+0.0000015
+</td>
+<td style="text-align:right;">
+0.0004739
+</td>
+<td style="text-align:left;">
+Bacteria
+</td>
+<td style="text-align:left;">
+Proteobacteria
+</td>
+<td style="text-align:left;">
+Gammaproteobacteria
+</td>
+<td style="text-align:left;">
+Betaproteobacteriales
+</td>
+<td style="text-align:left;">
+Burkholderiaceae
+</td>
+<td style="text-align:left;">
+Burkholderia-Caballeronia-Paraburkholderia
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:right;">
+1.72
+</td>
+<td style="text-align:right;">
+1.75
+</td>
+<td style="text-align:right;">
+0.3
+</td>
+<td style="text-align:left;">
+all
+</td>
+<td style="text-align:right;">
+0.25
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+OTU.14
+</td>
+<td style="text-align:right;">
+3.577531
+</td>
+<td style="text-align:right;">
+0.0000000
+</td>
+<td style="text-align:right;">
+0.0000000
+</td>
+<td style="text-align:left;">
+Bacteria
+</td>
+<td style="text-align:left;">
+Proteobacteria
+</td>
+<td style="text-align:left;">
+Gammaproteobacteria
+</td>
+<td style="text-align:left;">
+Betaproteobacteriales
+</td>
+<td style="text-align:left;">
+Burkholderiaceae
+</td>
+<td style="text-align:left;">
+Burkholderia-Caballeronia-Paraburkholderia
+</td>
+<td style="text-align:left;">
+Paraburkholderia tropica
+</td>
+<td style="text-align:right;">
+1.72
+</td>
+<td style="text-align:right;">
+1.75
+</td>
+<td style="text-align:right;">
+0.3
+</td>
+<td style="text-align:left;">
+all
+</td>
+<td style="text-align:right;">
+0.25
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+OTU.29540
+</td>
+<td style="text-align:right;">
+5.362351
+</td>
+<td style="text-align:right;">
+0.0000000
+</td>
+<td style="text-align:right;">
+0.0000000
+</td>
+<td style="text-align:left;">
+Bacteria
+</td>
+<td style="text-align:left;">
+Proteobacteria
+</td>
+<td style="text-align:left;">
+Gammaproteobacteria
+</td>
+<td style="text-align:left;">
+Betaproteobacteriales
+</td>
+<td style="text-align:left;">
+Burkholderiaceae
+</td>
+<td style="text-align:left;">
+Burkholderia-Caballeronia-Paraburkholderia
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:right;">
+1.72
+</td>
+<td style="text-align:right;">
+1.75
+</td>
+<td style="text-align:right;">
+0.3
+</td>
+<td style="text-align:left;">
+all
+</td>
+<td style="text-align:right;">
+0.25
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+OTU.14953
+</td>
+<td style="text-align:right;">
+4.417832
+</td>
+<td style="text-align:right;">
+0.0000000
+</td>
+<td style="text-align:right;">
+0.0000000
+</td>
+<td style="text-align:left;">
+Bacteria
+</td>
+<td style="text-align:left;">
+Proteobacteria
+</td>
+<td style="text-align:left;">
+Gammaproteobacteria
+</td>
+<td style="text-align:left;">
+Betaproteobacteriales
+</td>
+<td style="text-align:left;">
+Burkholderiaceae
+</td>
+<td style="text-align:left;">
+Burkholderia-Caballeronia-Paraburkholderia
+</td>
+<td style="text-align:left;">
+uncultured bacterium
+</td>
+<td style="text-align:right;">
+1.72
+</td>
+<td style="text-align:right;">
+1.75
+</td>
+<td style="text-align:right;">
+0.3
+</td>
+<td style="text-align:left;">
+all
+</td>
+<td style="text-align:right;">
+0.25
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+OTU.23594
+</td>
+<td style="text-align:right;">
+3.612762
+</td>
+<td style="text-align:right;">
+0.0000000
+</td>
+<td style="text-align:right;">
+0.0000000
+</td>
+<td style="text-align:left;">
+Bacteria
+</td>
+<td style="text-align:left;">
+Proteobacteria
+</td>
+<td style="text-align:left;">
+Gammaproteobacteria
+</td>
+<td style="text-align:left;">
+Betaproteobacteriales
+</td>
+<td style="text-align:left;">
+Burkholderiaceae
+</td>
+<td style="text-align:left;">
+Burkholderia-Caballeronia-Paraburkholderia
+</td>
+<td style="text-align:left;">
+Ambiguous\_taxa
+</td>
+<td style="text-align:right;">
+1.72
+</td>
+<td style="text-align:right;">
+1.75
+</td>
+<td style="text-align:right;">
+0.3
+</td>
+<td style="text-align:left;">
+all
+</td>
+<td style="text-align:right;">
+0.25
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+OTU.2
+</td>
+<td style="text-align:right;">
+3.818571
+</td>
+<td style="text-align:right;">
+0.0000000
+</td>
+<td style="text-align:right;">
+0.0000000
+</td>
+<td style="text-align:left;">
+Bacteria
+</td>
+<td style="text-align:left;">
+Proteobacteria
+</td>
+<td style="text-align:left;">
+Gammaproteobacteria
+</td>
+<td style="text-align:left;">
+Betaproteobacteriales
+</td>
+<td style="text-align:left;">
+Burkholderiaceae
+</td>
+<td style="text-align:left;">
+Burkholderia-Caballeronia-Paraburkholderia
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:right;">
+1.72
+</td>
+<td style="text-align:right;">
+1.75
+</td>
+<td style="text-align:right;">
+0.3
+</td>
+<td style="text-align:left;">
+all
+</td>
+<td style="text-align:right;">
+0.25
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+OTU.27260
+</td>
+<td style="text-align:right;">
+4.202305
+</td>
+<td style="text-align:right;">
+0.0000001
+</td>
+<td style="text-align:right;">
+0.0000559
+</td>
+<td style="text-align:left;">
+Bacteria
+</td>
+<td style="text-align:left;">
+Proteobacteria
+</td>
+<td style="text-align:left;">
+Gammaproteobacteria
+</td>
+<td style="text-align:left;">
+Betaproteobacteriales
+</td>
+<td style="text-align:left;">
+Burkholderiaceae
+</td>
+<td style="text-align:left;">
+Burkholderia-Caballeronia-Paraburkholderia
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:right;">
+1.72
+</td>
+<td style="text-align:right;">
+1.75
+</td>
+<td style="text-align:right;">
+0.3
+</td>
+<td style="text-align:left;">
+all
+</td>
+<td style="text-align:right;">
+0.25
+</td>
+</tr>
+</tbody>
+</table>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># How many 13C incorporators do we have?</span>
+<span class="kw">print</span>(<span class="kw">paste</span>(<span class="st">&quot;There are&quot;</span>, <span class="kw">length</span>(l2fc.df[l2fc.df$padj &lt;<span class="st"> </span>pvalue_cutoff,]$OTU), <span class="st">&quot;labeled OTUs&quot;</span>))</code></pre></div>
+<pre><code>## [1] &quot;There are 29 labeled OTUs&quot;</code></pre>
+<h4 id="save-results">5. Save results</h4>
+<p>Make sure to save your results.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">write.table</span>(l2fc.df, <span class="dt">file=</span><span class="st">&quot;MWHRSIP_output.txt&quot;</span>, <span class="dt">quote=</span><span class="ot">FALSE</span>, <span class="dt">sep=</span><span class="st">&quot;</span><span class="ch">\t</span><span class="st">&quot;</span>, <span class="dt">row.names =</span> <span class="ot">FALSE</span>, <span class="dt">col.names=</span><span class="ot">TRUE</span>)</code></pre></div>
+<h2 id="plotting-otu-relative-abundance-over-the-gradient">Plotting OTU relative abundance over the gradient</h2>
+<p>This is an exmple of one of the common followup analyses you can run. It can be useful to examine the plot of an identified labeled OTU's relative abundance over the entire gradient. This may help to identify labeled OTUs that seem suspect and warrant further examination.</p>
+<h4 id="import-phyloseq-and-mw-hr-sip-results">1. Import phyloseq and MW-HR-SIP results</h4>
+<p>Read count data can again be found in &quot;SIP_phyloseq.rds&quot;. You also need the log2fold change data you just made using <code>HRSIP()</code>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Import the phyloseq data you using the readRDS() function</span>
+SIP.physeq &lt;-<span class="st"> </span><span class="kw">readRDS</span>(<span class="st">&quot;../example_data/SIP_phyloseq.rds&quot;</span>)
+
+<span class="co"># Import the datatable you made before containing list of all OTU's and their results from MW-HR-SIP</span>
+l2fc.df &lt;-<span class="st"> </span><span class="kw">read.table</span>(<span class="dt">file=</span><span class="st">&quot;../example_data/MWHRSIP_output.txt&quot;</span>, <span class="dt">header=</span><span class="ot">TRUE</span>, <span class="dt">sep=</span><span class="st">&quot;</span><span class="ch">\t</span><span class="st">&quot;</span>)</code></pre></div>
+<h4 id="rarefy-read-counts-and-calculate-relative-abundances">2. Rarefy read counts and calculate relative abundances</h4>
+<p>As before you need to adjust read counts across fractions for variation in sequencing depth by rarefying read counts to an equal depth. Again, you can use other methods for this adjustment. For consistency sake, you also could to convert read counts to relative abundance. This means dividing the read count for each OTU by the total read count.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Before you rarefy, it is good to set the seed so that you can replicate this somewhat stochastic step. Note this was not shown in the chapter.</span>
+<span class="kw">set.seed</span>(<span class="dv">4242</span>)
+
+<span class="co"># Rarefy the data in each of the contrasts.</span>
+SIP.physeq.rare &lt;-<span class="st"> </span><span class="kw">rarefy_even_depth</span>(SIP.physeq)
+
+<span class="co"># Transform read counts to relative abundances</span>
+SIP.physeq.rare &lt;-<span class="st"> </span><span class="kw">transform_sample_counts</span>(SIP.physeq.rare, function(x) x /<span class="st"> </span><span class="kw">sum</span>(x))</code></pre></div>
+<h4 id="get-the-otu-table">3. Get the OTU table</h4>
+<p>Next, you need to to extract the OTU table from the phyloseq object. This table contains the relative abundance of each OTU in each sample/fraction. You will also convert this OTU table into a dataframe that is easier to use with ggplot2 for visualization.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Extract the OTU table and convert it into an easy to use dataframe</span>
+OTU.table &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="kw">t</span>(<span class="kw">otu_table</span>(SIP.physeq.rare))) %&gt;%
+<span class="st">  </span><span class="kw">rownames_to_column</span>(<span class="dt">var =</span> <span class="st">&quot;Sample_ID&quot;</span>) %&gt;%
+<span class="st">  </span><span class="kw">gather</span>(<span class="dt">key =</span> <span class="st">&quot;OTU&quot;</span>, <span class="dt">value =</span> <span class="st">&quot;Relative_abundance&quot;</span>, -Sample_ID) %&gt;%
+<span class="st">  </span><span class="kw">inner_join</span>(<span class="kw">data.frame</span>(<span class="kw">sample_data</span>(SIP.physeq.rare), <span class="dt">stringsAsFactors=</span><span class="ot">FALSE</span>), <span class="dt">by =</span> <span class="st">&quot;Sample_ID&quot;</span>)</code></pre></div>
+<h4 id="plot-figure">4. Plot figure</h4>
+<p>Now you can plot the relative abundance of any OTU across the gradient fractions. In this case, just look at OTU.2 which was identified as isotopically labeled.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Plot figure for OTU.2</span>
+<span class="kw">ggplot</span>(<span class="dt">data=</span>OTU.table[OTU.table$OTU ==<span class="st"> &quot;OTU.2&quot;</span>,], <span class="kw">aes</span>(<span class="dt">x=</span>Buoyant_density, <span class="dt">y=</span>Relative_abundance, <span class="dt">color=</span>substrate, <span class="dt">linetype=</span>substrate)) +
+<span class="st">  </span><span class="kw">geom_point</span>() +
+<span class="st">  </span><span class="kw">geom_line</span>() +
+<span class="st">  </span><span class="kw">labs</span>(<span class="dt">x=</span><span class="st">&quot;Buoyant density (g/ml)&quot;</span>, <span class="dt">y=</span><span class="st">&quot;Relative abundance&quot;</span>, <span class="dt">color=</span><span class="st">&quot;Substrate&quot;</span>, <span class="dt">linetype=</span><span class="st">&quot;Substrate&quot;</span>) +
+<span class="st">  </span><span class="kw">scale_color_manual</span>(<span class="dt">values=</span><span class="kw">c</span>(<span class="st">&quot;blue&quot;</span>, <span class="st">&quot;red&quot;</span>)) +
+<span class="st">  </span><span class="kw">scale_linetype_manual</span>(<span class="dt">values=</span><span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">1</span>))</code></pre></div>
+<p><img src="data:image/png;base64,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" alt /></p>
+<p>As you can see the distribution of relative abundance of OTU.2 is different between the 13C-Ami treatment and 12C-Con control samples. Note that there is a sharp peak in the treatment no sharp peak in the control gradients. We believe that this may be an artifact of the compositional nature of Illumina based sequencing.</p>
+<h2 id="more-examples">More examples</h2>
+<p>The following additional examples go along with this tutorial:</p>
+<ul>
+<li><a href="https://github.com/buckleylab/HR-SIP_example/HRSIP_multiple_samples.html">Example with multiple treatments and controls</a></li>
+<li><a href="https://github.com/buckleylab/HR-SIP_example/addl_prelim_analyses.html">Additional prelimiary analyses</a>
+<ul>
+<li>Beta-diversity across all fractions in treatment and controls</li>
+<li>Estimating community BD shift</li>
+</ul></li>
+<li><a href="https://github.com/buckleylab/HR-SIP_example/addl_further_analyses.html">Additional post MW-HR-SIP analyses</a>
+<ul>
+<li>Taxonomy of labeled OTUs</li>
+<li>Phylogeny of labeled OTUs</li>
+</ul></li>
+</ul>
+<h2 id="session-info">Session Info</h2>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">sessionInfo</span>()</code></pre></div>
+<pre><code>## R version 3.4.4 (2018-03-15)
+## Platform: x86_64-pc-linux-gnu (64-bit)
+## Running under: Ubuntu 16.04.4 LTS
+## 
+## Matrix products: default
+## BLAS: /usr/lib/atlas-base/atlas/libblas.so.3.0
+## LAPACK: /usr/lib/atlas-base/atlas/liblapack.so.3.0
+## 
+## locale:
+##  [1] LC_CTYPE=en_US.UTF-8       LC_NUMERIC=C              
+##  [3] LC_TIME=en_US.UTF-8        LC_COLLATE=en_US.UTF-8    
+##  [5] LC_MONETARY=en_US.UTF-8    LC_MESSAGES=en_US.UTF-8   
+##  [7] LC_PAPER=en_US.UTF-8       LC_NAME=C                 
+##  [9] LC_ADDRESS=C               LC_TELEPHONE=C            
+## [11] LC_MEASUREMENT=en_US.UTF-8 LC_IDENTIFICATION=C       
+## 
+## attached base packages:
+## [1] stats     graphics  grDevices utils     datasets  methods   base     
+## 
+## other attached packages:
+## [1] bindrcpp_0.2.2   kableExtra_0.8.0 knitr_1.20       ggplot2_3.1.0   
+## [5] HTSSIP_1.4.0     phyloseq_1.22.3  tibble_1.4.2     tidyr_0.8.1     
+## [9] dplyr_0.7.5     
+## 
+## loaded via a namespace (and not attached):
+##   [1] nlme_3.1-137               bitops_1.0-6              
+##   [3] matrixStats_0.54.0         bit64_0.9-7               
+##   [5] RColorBrewer_1.1-2         httr_1.3.1                
+##   [7] rprojroot_1.3-2            GenomeInfoDb_1.14.0       
+##   [9] tools_3.4.4                backports_1.1.2           
+##  [11] R6_2.2.2                   vegan_2.5-2               
+##  [13] rpart_4.1-13               DBI_1.0.0                 
+##  [15] Hmisc_4.1-1                lazyeval_0.2.1            
+##  [17] BiocGenerics_0.24.0        mgcv_1.8-24               
+##  [19] colorspace_1.3-2           permute_0.9-4             
+##  [21] ade4_1.7-11                nnet_7.3-12               
+##  [23] withr_2.1.2                tidyselect_0.2.4          
+##  [25] gridExtra_2.3              DESeq2_1.18.1             
+##  [27] bit_1.1-14                 compiler_3.4.4            
+##  [29] rvest_0.3.2                Biobase_2.38.0            
+##  [31] htmlTable_1.12             xml2_1.2.0                
+##  [33] DelayedArray_0.4.1         labeling_0.3              
+##  [35] checkmate_1.8.5            scales_1.0.0              
+##  [37] genefilter_1.60.0          readr_1.1.1               
+##  [39] stringr_1.3.1              digest_0.6.16             
+##  [41] foreign_0.8-71             rmarkdown_1.10            
+##  [43] XVector_0.18.0             base64enc_0.1-3           
+##  [45] pkgconfig_2.0.2            htmltools_0.3.6           
+##  [47] highr_0.7                  htmlwidgets_1.2           
+##  [49] rlang_0.3.1                RSQLite_2.1.1             
+##  [51] rstudioapi_0.7             bindr_0.1.1               
+##  [53] jsonlite_1.5               BiocParallel_1.12.0       
+##  [55] acepack_1.4.1              RCurl_1.95-4.11           
+##  [57] magrittr_1.5               GenomeInfoDbData_1.0.0    
+##  [59] Formula_1.2-3              biomformat_1.6.0          
+##  [61] Matrix_1.2-14              Rcpp_1.0.1                
+##  [63] munsell_0.5.0              S4Vectors_0.16.0          
+##  [65] ape_5.1                    stringi_1.2.4             
+##  [67] yaml_2.2.0                 MASS_7.3-50               
+##  [69] SummarizedExperiment_1.8.1 zlibbioc_1.24.0           
+##  [71] rhdf5_2.22.0               plyr_1.8.4                
+##  [73] blob_1.1.1                 grid_3.4.4                
+##  [75] parallel_3.4.4             lattice_0.20-35           
+##  [77] Biostrings_2.46.0          splines_3.4.4             
+##  [79] annotate_1.56.2            multtest_2.34.0           
+##  [81] hms_0.4.2                  locfit_1.5-9.1            
+##  [83] pillar_1.2.2               igraph_1.2.2              
+##  [85] GenomicRanges_1.30.3       geneplotter_1.56.0        
+##  [87] reshape2_1.4.3             codetools_0.2-15          
+##  [89] stats4_3.4.4               XML_3.98-1.16             
+##  [91] glue_1.2.0                 evaluate_0.11             
+##  [93] latticeExtra_0.6-28        data.table_1.11.4         
+##  [95] foreach_1.4.4              gtable_0.2.0              
+##  [97] purrr_0.2.5                assertthat_0.2.0          
+##  [99] xtable_1.8-3               survival_2.42-6           
+## [101] viridisLite_0.3.0          iterators_1.0.10          
+## [103] memoise_1.1.0              AnnotationDbi_1.40.0      
+## [105] IRanges_2.12.0             cluster_2.0.7-1</code></pre>
+
+</body>
+</html>

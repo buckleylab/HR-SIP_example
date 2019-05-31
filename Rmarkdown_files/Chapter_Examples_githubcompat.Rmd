@@ -5,12 +5,12 @@ date: "`r format(Sys.time(), '%d %B, %Y')`"
 output: 
   github_document:
     toc: true
-    toc_depth: 3
+    toc_depth: 2
 ---
 
 ## Introduction
 
-This tutorial takes you through a simple example analyzing amplicon based DNA-SIP data with a real dataset using the MW-HR-SIP method. The files used in this tutorial can be found with this github site under the directory [example_data](https://github.com/buckleylab/HR-SIP_example/example_data). 
+This tutorial takes you through a simple example analyzing amplicon based DNA-SIP data with a real dataset using the MW-HR-SIP method. The files used in this tutorial can be found with this github site under the directory [example_data](HR-SIP_example/example_data). 
 
 The analyses showcased here include:
 
