@@ -60,7 +60,7 @@ Unfractionated sample data can be found in the file "unfractionated\_phyloseq.rd
 
 ``` r
 # Import the data you using the readRDS() function
-unfrac.physeq <- readRDS("../example_data/unfractionated_phyloseq.rds")
+unfrac.physeq <- readRDS("example_data/unfractionated_phyloseq.rds")
 
 # What does this phyloseq object look like?
 unfrac.physeq
@@ -113,7 +113,7 @@ As you can see, the dissimilarity between treatment and control is a bit higher 
 MW-HR-SIP
 ---------
 
-Now it is time to run the MW-HR-SIP pipeline to identify isotopically labeled OTUs. This example will just be comparing a single treatment with its control. In most studies, there will be many treatments and corresponding controls. To handle this you can use the function `phyloseq_subset()` to split your starting phyloseq into a list of treatment-control pairs and then run `HRSIP()` on this list. An example of this can be found in [HRSIP\_multiple\_samples.html](HRSIP_multiple_samples.html) as well as the [HTSSIP vignette](https://cran.r-project.org/web/packages/HTSSIP/vignettes/HTSSIP_intro.html).
+Now it is time to run the MW-HR-SIP pipeline to identify isotopically labeled OTUs. This example will just be comparing a single treatment with its control. In most studies, there will be many treatments and corresponding controls. To handle this you can use the function `phyloseq_subset()` to split your starting phyloseq into a list of treatment-control pairs and then run `HRSIP()` on this list. An example of this can be found in [HRSIP\_multiple\_samples.md](HRSIP_multiple_samples.md) as well as the [HTSSIP vignette](https://cran.r-project.org/web/packages/HTSSIP/vignettes/HTSSIP_intro.html).
 
 #### 1. Import data
 
@@ -121,7 +121,7 @@ The data from the gradent fractions can be found in file "SIP\_phyloseq.rds". As
 
 ``` r
 # Import the data you using the readRDS() function
-SIP.physeq <- readRDS("../example_data/SIP_phyloseq.rds")
+SIP.physeq <- readRDS("example_data/SIP_phyloseq.rds")
 
 # What does this phyloseq object look like?
 SIP.physeq
@@ -1345,7 +1345,7 @@ print(paste("There are", length(l2fc.df[l2fc.df$padj < pvalue_cutoff,]$OTU), "la
 Make sure to save your results.
 
 ``` r
-write.table(l2fc.df, file="MWHRSIP_output.txt", quote=FALSE, sep="\t", row.names = FALSE, col.names=TRUE)
+write.table(l2fc.df, file="example_data/MWHRSIP_output.txt", quote=FALSE, sep="\t", row.names = FALSE, col.names=TRUE)
 ```
 
 Plotting OTU relative abundance over the gradient
@@ -1359,10 +1359,10 @@ Read count data can again be found in "SIP\_phyloseq.rds". You also need the log
 
 ``` r
 # Import the phyloseq data you using the readRDS() function
-SIP.physeq <- readRDS("../example_data/SIP_phyloseq.rds")
+SIP.physeq <- readRDS("example_data/SIP_phyloseq.rds")
 
 # Import the datatable you made before containing list of all OTU's and their results from MW-HR-SIP
-l2fc.df <- read.table(file="../example_data/MWHRSIP_output.txt", header=TRUE, sep="\t")
+l2fc.df <- read.table(file="example_data/MWHRSIP_output.txt", header=TRUE, sep="\t")
 ```
 
 #### 2. Rarefy read counts and calculate relative abundances
@@ -1406,7 +1406,7 @@ ggplot(data=OTU.table[OTU.table$OTU == "OTU.2",], aes(x=Buoyant_density, y=Relat
   scale_linetype_manual(values=c(2, 1))
 ```
 
-![](Chapter_Examples_githubcompat_files/figure-markdown_github/unnamed-chunk-14-1.png)
+![](Chapter_Examples_files/figure-markdown_github/unnamed-chunk-14-1.png)
 
 As you can see the distribution of relative abundance of OTU.2 is different between the 13C-Ami treatment and 12C-Con control samples. Note that there is a sharp peak in the treatment no sharp peak in the control gradients. We believe that this may be an artifact of the compositional nature of Illumina based sequencing.
 
@@ -1415,11 +1415,11 @@ More examples
 
 The following additional examples go along with this tutorial:
 
--   [Example with multiple treatments and controls](HRSIP_multiple_samples.html)
--   [Additional prelimiary analyses](addl_prelim_analyses.html)
+-   [Example with multiple treatments and controls](HRSIP_multiple_samples.md)
+-   [Additional prelimiary analyses](addl_prelim_analyses.md)
     -   Beta-diversity across all fractions in treatment and controls
     -   Estimating community BD shift
--   [Additional post MW-HR-SIP analyses](addl_further_analyses.html)
+-   [Additional post MW-HR-SIP analyses](addl_further_analyses.md)
     -   Taxonomy of labeled OTUs
     -   Phylogeny of labeled OTUs
 
