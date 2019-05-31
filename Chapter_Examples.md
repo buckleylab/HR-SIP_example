@@ -1,7 +1,7 @@
 Simple HTSSIP example
 ================
 Samuel Barnett
-31 May, 2019
+May 31, 2019
 
 -   [Introduction](#introduction)
 -   [Testing treatment-control beta-diversity](#testing-treatment-control-beta-diversity)
