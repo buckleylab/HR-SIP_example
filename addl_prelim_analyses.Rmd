@@ -1,16 +1,17 @@
 ---
 title: "Examples of additional preliminary analyses"
-author: "Sam Barnett"
-date: "`r format(Sys.time(), '%d %B, %Y')`"
+author: "Samuel Barnett"
+date: "`r format(Sys.time(), '%B %d, %Y')`"
 output: 
-  html_document:
+  github_document:
     toc: true
-    toc_float: true
+    toc_depth: 2
+    html_preview: false
 ---
 
 ## Introduction
 
-There are many preliminary analyses that can be performed before running MW-HR-SIP. This tutorial goes through two simple examples, specifically, measuring beta-diversity between all fractions of the treatment and control and estimating the community level buoyant density shift. For an example on how to measure the beta-diversity between unfractionated samples of the treatment and control, see [Chapter_Examples](https://github.com/buckleylab/HR-SIP_example/Chapter_Examples.html).
+There are many preliminary analyses that can be performed before running MW-HR-SIP. This tutorial goes through two simple examples, specifically, measuring beta-diversity between all fractions of the treatment and control and estimating the community level buoyant density shift. For an example on how to measure the beta-diversity between unfractionated samples of the treatment and control, see [Chapter_Examples](Chapter_Examples.md). The files used in this tutorial can be found with this github site under the directory [example_data](example_data/).
 
 ### R packages needed
 
@@ -41,15 +42,15 @@ As with all prevous examples, you can run this analyis with a single treatment-c
 
 ### Single treatment-control pair
 
-First here is an example of a simple code for visualizing the distance between all fractions from a single treatment-control sample pair. In this case, you have a single phyloseq just as in [Chapter_Examples](https://github.com/buckleylab/HR-SIP_example/Chapter_Examples.html). The following uses custom code which can be changed to suit your needs or coding style.
+First here is an example of a simple code for visualizing the distance between all fractions from a single treatment-control sample pair. In this case, you have a single phyloseq just as in [Chapter_Examples](Chapter_Examples.md). The following uses custom code which can be changed to suit your needs or coding style.
 
 #### 1. Import the data
 
-As with [Chapter_Examples](https://github.com/buckleylab/HR-SIP_example/Chapter_Examples.html) you will use the data found in file "SIP_phyloseq.rds".
+As with [Chapter_Examples](Chapter_Examples.md) you will use the data found in file "SIP_phyloseq.rds".
 
 ```{r, message=FALSE, warning=FALSE}
 # Import the data you using the readRDS() function
-S1D1.SIP.physeq <- readRDS("SIP_phyloseq.rds")
+S1D1.SIP.physeq <- readRDS("example_data/SIP_phyloseq.rds")
 
 # What does this phyloseq object look like?
 S1D1.SIP.physeq
@@ -105,7 +106,7 @@ ggplot(data=bray.ord.df, aes(x=MDS1, y=MDS2, color=substrate, fill=substrate, si
 
 ### Multiple treatments and controls
 
-With most real studies you will have multiple treatment samples and corresponding controls. HTSSIP has a handy function to do the above analysis but on multiple treatment-control pairs at once. This example will use the same dataset as in [HRSIP_multiple_samples](https://github.com/buckleylab/HR-SIP_example/HRSIP_multiple_samples.html). This dataset has two 13C labeling treatments over two sampling days, resulting in four treatment-control comparisons:
+With most real studies you will have multiple treatment samples and corresponding controls. HTSSIP has a handy function to do the above analysis but on multiple treatment-control pairs at once. This example will use the same dataset as in [HRSIP_multiple_samples](HRSIP_multiple_samples.md). This dataset has two 13C labeling treatments over two sampling days, resulting in four treatment-control comparisons:
 
   13C-Cellulose Day 3 vs. 12C-Control Day 3
   13C-Glucose Day 3 vs. 12C-Control Day 3
@@ -118,7 +119,7 @@ The dataset for this example is called "example_S2D2_phyloseq.rds". As before th
 
 ```{r, message=FALSE, warning=FALSE}
 # Import the data you using the readRDS() function
-S2D2.SIP.physeq <- readRDS("example_S2D2_phyloseq.rds")
+S2D2.SIP.physeq <- readRDS("example_data/example_S2D2_phyloseq.rds")
 
 # What does this phyloseq object look like?
 S2D2.SIP.physeq
@@ -127,7 +128,7 @@ S2D2.SIP.physeq
 
 #### 2. Subset data by treatment-control comparisons
 
-Currently all of the data is in one single phyloseq object. For the analysis you need separate phyloseq objects, each containing all the fractions for a single treatment and its corresponding control. As in [HRSIP_multiple_samples](https://github.com/buckleylab/HR-SIP_example/HRSIP_multiple_samples.html), you can use the function `phyloseq_subset()` to split up your phyloseq into a list of 4 phyloseq, each matched by day and a single treatment-control combination.
+Currently all of the data is in one single phyloseq object. For the analysis you need separate phyloseq objects, each containing all the fractions for a single treatment and its corresponding control. As in [HRSIP_multiple_samples](HRSIP_multiple_samples.md), you can use the function `phyloseq_subset()` to split up your phyloseq into a list of 4 phyloseq, each matched by day and a single treatment-control combination.
 
 You need to subset the data by `Substrate` and by `Day`. To do this you make an expression that tells the function how to pair up samples. You will use the expression:
 
@@ -193,11 +194,11 @@ First, this is an example of code for visualizing BD shift and finding BD shift 
 
 #### 1. Import the data
 
-As with [Chapter_Examples](https://github.com/buckleylab/HR-SIP_example/Chapter_Examples.html) you will use the data found in file "SIP_phyloseq.rds".
+As with [Chapter_Examples](Chapter_Examples.md) you will use the data found in file "SIP_phyloseq.rds".
 
 ```{r, message=FALSE, warning=FALSE}
 # Import the data you using the readRDS() function
-S1D1.SIP.physeq <- readRDS("SIP_phyloseq.rds")
+S1D1.SIP.physeq <- readRDS("example_data/SIP_phyloseq.rds")
 
 # What does this phyloseq object look like?
 S1D1.SIP.physeq
@@ -293,7 +294,7 @@ The dataset for this example is the same as before, "example_S2D2_phyloseq.rds".
 
 ```{r, message=FALSE, warning=FALSE}
 # Import the data you using the readRDS() function
-S2D2.SIP.physeq <- readRDS("example_S2D2_phyloseq.rds")
+S2D2.SIP.physeq <- readRDS("example_data/example_S2D2_phyloseq.rds")
 
 # What does this phyloseq object look like?
 S2D2.SIP.physeq
@@ -302,7 +303,7 @@ S2D2.SIP.physeq
 
 ##### 2. Subset data by treatment-control comparisons
 
-Currently all of the data is in one single phyloseq object. Just as before, for the analysis you need separate phyloseq objects, each containing all the fractions for a single treatment and its corresponding control. As in [HRSIP_multiple_samples](https://github.com/buckleylab/HR-SIP_example/HRSIP_multiple_samples.html), you can use the function `phyloseq_subset()` to split up your phyloseq into a list of 4 phyloseq, each matched by day and a single treatment-control combination.
+Currently all of the data is in one single phyloseq object. Just as before, for the analysis you need separate phyloseq objects, each containing all the fractions for a single treatment and its corresponding control. As in [HRSIP_multiple_samples](HRSIP_multiple_samples.md), you can use the function `phyloseq_subset()` to split up your phyloseq into a list of 4 phyloseq, each matched by day and a single treatment-control combination.
 
 You need to subset the data by `Substrate` and by `Day`. To do this you make an expression that tells the function how to pair up samples. You will use the expression:
 

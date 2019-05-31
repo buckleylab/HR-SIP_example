@@ -1,27 +1,28 @@
 ---
 title: "MW-HR-SIP over multiple samples"
 author: "Samuel Barnett"
-date: "`r format(Sys.time(), '%d %B, %Y')`"
+date: "`r format(Sys.time(), '%B %d, %Y')`"
 output: 
-  html_document:
+  github_document:
     toc: true
-    toc_float: true
+    toc_depth: 2
+    html_preview: false
 ---
 
 ## Introduction
 
-This tutorial runs through running Multiple Window High Resolution DNA-SIP (MW-HR-SIP) with a real example dataset that includes multiple treatment and control samples. The sample code in [Chapter_Examples](https://github.com/buckleylab/HR-SIP_example/Chapter_Examples.html) shows how to run a simple analysis on one treatment and control comparison. However, in a real world experiment, you will be working with more data than this, such as using multiple isotopically labled substrates, timepoints, community types. Running MW-HR-SIP using the function `HRSIP()` from package `HTSSIP` is still simple to run with multiple treatment-control comparisons, and just requires a different data management technique ... lists. Basically, instead of running `HRSIP()` on a single phyloseq object, you will make a list of phyloseq objects and then iteratively run `HRSIP()` on each element. This also allows you to use an alternative parallelization for systems with multiple processors that can make your analysis much faster.
+This tutorial runs through running Multiple Window High Resolution DNA-SIP (MW-HR-SIP) with a real example dataset that includes multiple treatment and control samples. The sample code in [Chapter_Examples](Chapter_Examples.md) shows how to run a simple analysis on one treatment and control comparison. However, in a real world experiment, you will be working with more data than this, such as using multiple isotopically labled substrates, timepoints, community types. Running MW-HR-SIP using the function `HRSIP()` from package `HTSSIP` is still simple to run with multiple treatment-control comparisons, and just requires a different data management technique ... lists. Basically, instead of running `HRSIP()` on a single phyloseq object, you will make a list of phyloseq objects and then iteratively run `HRSIP()` on each element. This also allows you to use an alternative parallelization for systems with multiple processors that can make your analysis much faster. The files used in this tutorial can be found with this github site under the directory [example_data](example_data/). 
 
 For this example the sample data is from an experiment that added glucose and cellulose to soil microcosms and harvested them 3 or 14 days after substrate addition. This means there are both a multiple substrate and timepoint components. In this experiment, both substrates are added to all microcosms. The treatment microcosms have the distinction that one of the substrates is labeled with 13C. The power of this design is that it allows you to use the same controls for both substrates within the same timepoint. The microcosms are defined as follows:
 
 * Treatment microcosms
-    * 13C-Glu.D3: Given 13C-glucose and 12C-cellulose and harvested on day 3
-    * 13C-Cel.D3: Given 13C-cellulose and 12C-glucose and harvested on day 3
-    * 13C-Glu.D14: Given 13C-glucose and 12C-cellulose and harvested on day 14
-    * 13C-Cel.D14: Given 13C-cellulose and 12C-glucose and harvested on day 14
+    + 13C-Glu.D3: Given 13C-glucose and 12C-cellulose and harvested on day 3
+    + 13C-Cel.D3: Given 13C-cellulose and 12C-glucose and harvested on day 3
+    + 13C-Glu.D14: Given 13C-glucose and 12C-cellulose and harvested on day 14
+    + 13C-Cel.D14: Given 13C-cellulose and 12C-glucose and harvested on day 14
 * Control microcosms
-    * 12C-Con.D3: Given 12C-glucose and 12C-cellulose and harvested on day 3
-    * 12C-Con.D14: Given 12C-glucose and 12C-cellulose and harvested on day 14
+    + 12C-Con.D3: Given 12C-glucose and 12C-cellulose and harvested on day 3
+    + 12C-Con.D14: Given 12C-glucose and 12C-cellulose and harvested on day 14
 
 ### R packages needed
 
@@ -42,7 +43,7 @@ library(kableExtra)
 
 ## MW-HR-SIP
 
-This example doesn't include any prelimiary analyses, but it is recommended that some of the analyses found in [Chapter_Examples](https://github.com/buckleylab/HR-SIP_example/Chapter_Examples.html) and [addl_prelim_analyses](https://github.com/buckleylab/HR-SIP_example/addl_prelim_analyses.html) be conducted prior to running MW-HR-SIP. These preliminary analyses can easily be run using multiple treatment-control sample pairs and examples are found in the linked pages.
+This example doesn't include any prelimiary analyses, but it is recommended that some of the analyses found in [Chapter_Examples](Chapter_Examples.md) and [addl_prelim_analyses](addl_prelim_analyses.md) be conducted prior to running MW-HR-SIP. These preliminary analyses can easily be run using multiple treatment-control sample pairs and examples are found in the linked pages.
 
 #### 1. Import data
 
@@ -50,7 +51,7 @@ Data for this tutorial is a dataset called "example_S2D2_phyloseq.rds". As befor
 
 ```{r, message=FALSE, warning=FALSE}
 # Import the data you using the readRDS() function
-SIP.physeq <- readRDS("example_S2D2_phyloseq.rds")
+SIP.physeq <- readRDS("example_data/example_S2D2_phyloseq.rds")
 
 # What does this phyloseq object look like?
 SIP.physeq
@@ -150,11 +151,11 @@ l2fc.df %>%
 
 Don't forget to save your results.
 
-```{r, message=FALSE, warning=FALSE, eval=FALSE}
-write.table(l2fc.df, file="MWHRSIP_S2D2_output.txt", quote=FALSE, sep="\t", row.names = FALSE, col.names=TRUE)
+```{r, message=FALSE, warning=FALSE}
+write.table(l2fc.df, file="example_data/MWHRSIP_S2D2_output.txt", quote=FALSE, sep="\t", row.names = FALSE, col.names=TRUE)
 ```
 
-Analyses after this step are up to you and based on your own project design and question. Some example analyses can be found in [addl_further_analyses](https://github.com/buckleylab/HR-SIP_example/addl_further_analyses.html). These examples include code for multiple treatment-control pairs like here.
+Analyses after this step are up to you and based on your own project design and question. Some example analyses can be found in [addl_further_analyses](addl_further_analyses.md). These examples include code for multiple treatment-control pairs like here.
 
 ## Session Info
 ```{r}

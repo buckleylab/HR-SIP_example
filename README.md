@@ -1,10 +1,9 @@
-# Tutorials for analysis of amplicon DNA-stable isotope probing data with HTSSIP
+# Multiple window high resolution DNA-stable isotope probing tutorials
 
-The tutorials found here go through some basic analyses for running high resolution DNA-SIP (HR-SIP) and
-multiple window HR-SIP (MW-HR-SIP) on 16S rRNA gene amplicon sequence data. DNA-SIP is a method that allows us to link
-microbes to their function in complex environmental samples such as soil. There are many articles discussing the use of DNA-SIP
-for microbial ecology studies in various environments. The methods discussed here (HR-SIP and MW-HR-SIP) allow us to identify bacterial
-operational taxonomic units (OTUs) that are significantly labeled with <sup>13</sup>Carbon or <sup>15</sup>Nitrogen. These methods are discussed more in the following papers:
+DNA-stable isotope probing (DNA-SIP) is a method that allows us to link microbes to their function in complex environmental samples such as soil. There are many articles discussing the use of DNA-SIP
+for microbial ecology studies in various environments. The tutorials found here go through some basic analyses for running multiple window high resolution DNA-SIP (MW-HR-SIP) on 16S rRNA gene amplicon sequence data.
+This method allow us to identify bacterial operational taxonomic units (OTUs) that are significantly labeled with <sup>13</sup>Carbon or <sup>15</sup>Nitrogen. 
+MW-HR-SIP and an earlier method with the same principle (high resolution DNA-SIP) are discussed more in the following papers:
 
 * Pepe-Ranney C, Campbell AN, Koechli CN, Berthrong S and Buckley DH (2016) 
 Unearthing the Ecology of Soil Microorganisms Using a High Resolution DNA-SIP Approach to Explore Cellulose and Xylose Metabolism in Soil. 
@@ -13,7 +12,7 @@ Front. Microbiol. 7:703. doi:[10.3389/fmicb.2016.00703](https://doi.org/10.3389/
 SIPSim: A Modeling Toolkit to Predict Accuracy and Aid Design of DNA-SIP Experiments. 
 Front. Microbiol. 9:570. doi:[10.3389/fmicb.2018.00570](https://doi.org/10.3389/fmicb.2018.00570)
 
-These two analysis methods can be performed in R using functions from the package [HTSSIP](https://cran.r-project.org/web/packages/HTSSIP/index.html)
+MW-HR-SIP can be performed in R using functions from the package [HTSSIP](https://cran.r-project.org/web/packages/HTSSIP/index.html)
 available on CRAN. These tutorials will take you through some preliminary analyses, the main functions, and some follow-up analyses using this package as well as code for developing some interesting figures.
 
 For more information on the HTSSIP package please refer to:
@@ -26,25 +25,23 @@ You can also find more example analyses with HTSSIP in the [vignettes](https://c
 
 ## The tutorials
 
-All tutorials were writen in R markdown and original files can be found in [Rmarkdown_files](Rmarkdown_files/).
-Also, all tutorials are HTML files so to view with GitHub you need to add http://htmlpreview.github.com/? before file name in address bar. Alternatively, the links
-below go directly to this format.
+All tutorials are formatted as markdown files viewable with GitHub (.md). They were writen in R markdown and original files are included here (.Rmd).
 
-### [Simple HTSSIP example](http://htmlpreview.github.com/?https://github.com/seb369/HR-SIP_example/blob/master/Chapter_Examples.html)
-Runs through a simple example for analyzing a real amplicon dataset with both HR-SIP and MW-HR-SIP.
+### [Simple HTSSIP example](Chapter_Examples.md)
+Runs through a simple example for analyzing a real amplicon dataset with MW-HR-SIP.
 The dataset used here includes a single treatment and control pair.
 
-### [Multi-sample HTSSIP example](http://htmlpreview.github.com/?https://github.com/seb369/HR-SIP_example/blob/master/HRSIP_multiple_samples.html)
+### [Multi-sample HTSSIP example](HRSIP_multiple_samples.md)
 Runs through a more complex example for analyzing an amplicon dataset that includes multiple treatments and sampling days with their corresponding controls.
 
-### [Additional preliminary analyses](http://htmlpreview.github.com/?https://github.com/seb369/HR-SIP_example/blob/master/addl_prelim_analyses.html)
-Examples of additional analyses that can be run prior to HR-SIP or MW-HR-SIP:
+### [Additional preliminary analyses](addl_prelim_analyses.md)
+Examples of additional analyses that can be run prior to MW-HR-SIP:
 
 * Beta-diversity between treatments and controls across fractions.
 * Estimating buoyant density shift of the community.
 
-### [Additional follow-up analyses](http://htmlpreview.github.com/?https://github.com/seb369/HR-SIP_example/blob/master/addl_further_analyses.html)
-Examples of additional analyses and figures that can be done after running HR-SIP or MW-HR-SIP:
+### [Additional follow-up analyses](addl_further_analyses.md)
+Examples of additional analyses and figures that can be done after running MW-HR-SIP:
 
 * Examine taxonomy of labeled OTUs.
 * Examine phylogeny of labeled OTUs.
