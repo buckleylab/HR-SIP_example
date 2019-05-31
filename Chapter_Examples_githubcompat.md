@@ -13,7 +13,7 @@ Samuel Barnett
 Introduction
 ------------
 
-This tutorial takes you through a simple example analyzing amplicon based DNA-SIP data with a real dataset using the MW-HR-SIP method. The files used in this tutorial can be found with this github site under the directory [example\_data](HR-SIP_example/example_data).
+This tutorial takes you through a simple example analyzing amplicon based DNA-SIP data with a real dataset using the MW-HR-SIP method. The files used in this tutorial can be found with this github site under the directory [example\_data](example_data/).
 
 The analyses showcased here include:
 
@@ -113,7 +113,7 @@ As you can see, the dissimilarity between treatment and control is a bit higher 
 MW-HR-SIP
 ---------
 
-Now it is time to run the MW-HR-SIP pipeline to identify isotopically labeled OTUs. This example will just be comparing a single treatment with its control. In most studies, there will be many treatments and corresponding controls. To handle this you can use the function `phyloseq_subset()` to split your starting phyloseq into a list of treatment-control pairs and then run `HRSIP()` on this list. An example of this can be found in [HRSIP\_multiple\_samples.html](https://github.com/buckleylab/HR-SIP_example/HRSIP_multiple_samples.html) as well as the [HTSSIP vignette](https://cran.r-project.org/web/packages/HTSSIP/vignettes/HTSSIP_intro.html).
+Now it is time to run the MW-HR-SIP pipeline to identify isotopically labeled OTUs. This example will just be comparing a single treatment with its control. In most studies, there will be many treatments and corresponding controls. To handle this you can use the function `phyloseq_subset()` to split your starting phyloseq into a list of treatment-control pairs and then run `HRSIP()` on this list. An example of this can be found in [HRSIP\_multiple\_samples.html](HRSIP_multiple_samples.html) as well as the [HTSSIP vignette](https://cran.r-project.org/web/packages/HTSSIP/vignettes/HTSSIP_intro.html).
 
 #### 1. Import data
 
@@ -1415,11 +1415,11 @@ More examples
 
 The following additional examples go along with this tutorial:
 
--   [Example with multiple treatments and controls](https://github.com/buckleylab/HR-SIP_example/HRSIP_multiple_samples.html)
--   [Additional prelimiary analyses](https://github.com/buckleylab/HR-SIP_example/addl_prelim_analyses.html)
+-   [Example with multiple treatments and controls](HRSIP_multiple_samples.html)
+-   [Additional prelimiary analyses](addl_prelim_analyses.html)
     -   Beta-diversity across all fractions in treatment and controls
     -   Estimating community BD shift
--   [Additional post MW-HR-SIP analyses](https://github.com/buckleylab/HR-SIP_example/addl_further_analyses.html)
+-   [Additional post MW-HR-SIP analyses](addl_further_analyses.html)
     -   Taxonomy of labeled OTUs
     -   Phylogeny of labeled OTUs
 

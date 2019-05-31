@@ -37,7 +37,7 @@ body {
 <li>Session Info</li>
 </ul>
 <h2 id="introduction">Introduction</h2>
-<p>This tutorial takes you through a simple example analyzing amplicon based DNA-SIP data with a real dataset using the MW-HR-SIP method. The files used in this tutorial can be found with this github site under the directory <a href="HR-SIP_example/example_data">example_data</a>.</p>
+<p>This tutorial takes you through a simple example analyzing amplicon based DNA-SIP data with a real dataset using the MW-HR-SIP method. The files used in this tutorial can be found with this github site under the directory <a href="example_data/">example_data</a>.</p>
 <p>The analyses showcased here include:</p>
 <ul>
 <li>Testing treatment-control beta-diversity</li>
@@ -107,7 +107,7 @@ unfrac.dist</code></pre></div>
 ## 12C-Con 0.26981</code></pre>
 <p>As you can see, the dissimilarity between treatment and control is a bit higher than 0.2. This is ok, as values around this are common and often unavoidable with real world datasets. However, caution may be warranted when interpereting the results.</p>
 <h2 id="mw-hr-sip">MW-HR-SIP</h2>
-<p>Now it is time to run the MW-HR-SIP pipeline to identify isotopically labeled OTUs. This example will just be comparing a single treatment with its control. In most studies, there will be many treatments and corresponding controls. To handle this you can use the function <code>phyloseq_subset()</code> to split your starting phyloseq into a list of treatment-control pairs and then run <code>HRSIP()</code> on this list. An example of this can be found in <a href="https://github.com/buckleylab/HR-SIP_example/HRSIP_multiple_samples.html">HRSIP_multiple_samples.html</a> as well as the <a href="https://cran.r-project.org/web/packages/HTSSIP/vignettes/HTSSIP_intro.html">HTSSIP vignette</a>.</p>
+<p>Now it is time to run the MW-HR-SIP pipeline to identify isotopically labeled OTUs. This example will just be comparing a single treatment with its control. In most studies, there will be many treatments and corresponding controls. To handle this you can use the function <code>phyloseq_subset()</code> to split your starting phyloseq into a list of treatment-control pairs and then run <code>HRSIP()</code> on this list. An example of this can be found in <a href="HRSIP_multiple_samples.html" class="uri">HRSIP_multiple_samples.html</a> as well as the <a href="https://cran.r-project.org/web/packages/HTSSIP/vignettes/HTSSIP_intro.html">HTSSIP vignette</a>.</p>
 <h4 id="import-data-1">1. Import data</h4>
 <p>The data from the gradent fractions can be found in file &quot;SIP_phyloseq.rds&quot;. As before this is an R object containing the data in phyloseq format.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Import the data you using the readRDS() function</span>
@@ -1341,13 +1341,13 @@ OTU.table &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span
 <h2 id="more-examples">More examples</h2>
 <p>The following additional examples go along with this tutorial:</p>
 <ul>
-<li><a href="https://github.com/buckleylab/HR-SIP_example/HRSIP_multiple_samples.html">Example with multiple treatments and controls</a></li>
-<li><a href="https://github.com/buckleylab/HR-SIP_example/addl_prelim_analyses.html">Additional prelimiary analyses</a>
+<li><a href="HRSIP_multiple_samples.html">Example with multiple treatments and controls</a></li>
+<li><a href="addl_prelim_analyses.html">Additional prelimiary analyses</a>
 <ul>
 <li>Beta-diversity across all fractions in treatment and controls</li>
 <li>Estimating community BD shift</li>
 </ul></li>
-<li><a href="https://github.com/buckleylab/HR-SIP_example/addl_further_analyses.html">Additional post MW-HR-SIP analyses</a>
+<li><a href="addl_further_analyses.html">Additional post MW-HR-SIP analyses</a>
 <ul>
 <li>Taxonomy of labeled OTUs</li>
 <li>Phylogeny of labeled OTUs</li>
