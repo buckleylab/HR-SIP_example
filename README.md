@@ -2,7 +2,7 @@
 
 DNA-stable isotope probing (DNA-SIP) is a method that allows us to link microbes to their function in complex environmental samples such as soil. There are many articles discussing the use of DNA-SIP
 for microbial ecology studies in various environments. The tutorials found here go through some basic analyses for running multiple window high resolution DNA-SIP (MW-HR-SIP) on 16S rRNA gene amplicon sequence data.
-This method allow us to identify bacterial operational taxonomic units (OTUs) that are significantly labeled with <sup>13</sup>Carbon or <sup>15</sup>Nitrogen. 
+This method allow us to identify bacterial operational taxonomic units (OTUs) that are significantly labeled with <sup>13</sup>Carbon or <sup>15</sup>Nitrogen.
 MW-HR-SIP and an earlier method with the same principle (high resolution DNA-SIP) are discussed more in the following papers:
 
 * Pepe-Ranney C, Campbell AN, Koechli CN, Berthrong S and Buckley DH (2016) 
@@ -13,9 +13,9 @@ SIPSim: A Modeling Toolkit to Predict Accuracy and Aid Design of DNA-SIP Experim
 Front. Microbiol. 9:570. doi:[10.3389/fmicb.2018.00570](https://doi.org/10.3389/fmicb.2018.00570)
 
 MW-HR-SIP can be performed in R using functions from the package [HTSSIP](https://cran.r-project.org/web/packages/HTSSIP/index.html)
-available on CRAN. These tutorials will take you through some preliminary analyses, the main functions, and some follow-up analyses using this package as well as code for developing some interesting figures.
+available on CRAN. These tutorials will take you through some preliminary analyses, the main functions, and some basic follow-up analyses using this package and some custom code for interesting figures.
 
-For more information on the HTSSIP package please refer to:
+For more information on the HTSSIP package, please refer to:
 
 Youngblut ND, Barnett SE, Buckley DH (2018) 
 HTSSIP: An R package for analysis of high throughput sequencing data from nucleic acid stable isotope probing (SIP) experiments. 
@@ -25,14 +25,14 @@ You can also find more example analyses with HTSSIP in the [vignettes](https://c
 
 ## The tutorials
 
-All tutorials are formatted as markdown files viewable with GitHub (.md). They were writen in R markdown and original files are included here (.Rmd).
+All tutorials are formatted as markdown files compatible with GitHub (.md). They were writen in Rmarkdown and original files are also included here (.Rmd).
 
 ### [Simple HTSSIP example](Chapter_Examples.md)
 Runs through a simple example for analyzing a real amplicon dataset with MW-HR-SIP.
 The dataset used here includes a single treatment and control pair.
 
 ### [Multi-sample HTSSIP example](HRSIP_multiple_samples.md)
-Runs through a more complex example for analyzing an amplicon dataset that includes multiple treatments and sampling days with their corresponding controls.
+A more complex example for analyzing an amplicon dataset that includes multiple treatments and sampling days with their corresponding controls.
 
 ### [Additional preliminary analyses](addl_prelim_analyses.md)
 Examples of additional analyses that can be run prior to MW-HR-SIP:
@@ -53,11 +53,12 @@ All datasets are in phyloseq format. For more information on this format please 
 
 These datasets come from experiments adding <sup>13</sup>C-labeled substrates 
 (<sup>13</sup>C-Amino acids, <sup>13</sup>C-Glucose, <sup>13</sup>C-Cellulose) 
-to soil in microcosms. There were also some microcoms where unlabeled (<sup>12</sup>C)
-substrates were added as control samples. The soil was then harvested on various days. DNA was extracted
-from the soil samples and either sequenced right aways (unfractionated data) or added to a CsCl gradient,
-run on the ultracentrifuge and fractionated. Then the V4 region of the 16S rRNA gene was sequenced
-from each fraction. All sequencing was performed with an Illumina MiSeq and processed using a standard sequence processing pipeline.
+to soil in microcosms. There were also some microcosms where unlabeled (<sup>12</sup>C)
+substrates were added as control samples. The soils were harvested on various days. DNA was extracted
+from the soil samples and either sequenced right away (unfractionated data) or added to a CsCl gradient,
+run on the ultracentrifuge, and fractionated. Then the V4 region of the 16S rRNA gene was sequenced
+from each fraction. All sequencing was performed with an Illumina MiSeq and processed using a standard sequence processing pipeline. 
+The final data packaged into the phyloseq objects are the OTU table, taxonomy table, phylogenetic tree, and sample metadata table.
 
 * **unfractionated_phyloseq.rds:** Includes processed sequencing data from the unfractionated samples (*i.e.* samples from the microcosms that were not fractionated but directly sequenced). These samples correspond to the fractionated samples in SIP_phyloseq.rds.  
 * **SIP_phyloseq.rds:** The processed sequencing data from fractions of a single treatment and control microcosm pair.
